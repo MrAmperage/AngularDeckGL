@@ -6,6 +6,7 @@
     "@angular/core": "^19.1.4"
   },
   "dependencies": {
+    "maplibre-gl": "^5.1.0",
     "tslib": "^2.8.1"
   },
   "sideEffects": false,

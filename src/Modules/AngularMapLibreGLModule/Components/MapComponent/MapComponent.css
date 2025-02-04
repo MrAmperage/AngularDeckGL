@@ -1,0 +1,6 @@
+@import url("../../../../../node_modules/maplibre-gl/dist/maplibre-gl.css");
+:host {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
