@@ -4,7 +4,7 @@ import { Map } from "maplibre-gl";
 @Component({
   selector: "MapComponent",
   templateUrl: "MapComponent.html",
-  styleUrl: "MapComponent.css",
+  styleUrls: ["./MapComponent.css"],
 })
 export default class MapComponent implements OnInit {
   @Input()
