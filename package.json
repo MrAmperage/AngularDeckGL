@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^19.1.4",
-    "@angular/core": "^19.1.4",
-    "maplibre-gl": "^5.1.0"
+    "@angular/core": "^19.1.4"
   },
   "dependencies": {
-    "tslib": "^2.8.1"
+    "@deck.gl/core": "^9.1.0",
+    "@deck.gl/geo-layers": "^9.1.0",
+    "@deck.gl/mapbox": "^9.1.0",
+    "@deck.gl/mesh-layers": "^9.1.0",
+    "tslib": "^2.8.1",
+    "maplibre-gl": "^5.1.0"
   },
   "sideEffects": false,
   "devDependencies": {

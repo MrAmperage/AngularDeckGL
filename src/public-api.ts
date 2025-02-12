@@ -3,3 +3,4 @@
  */
 
 export { default as MapComponent } from "./Modules/AngularMapLibreGLModule/Components/MapComponent/MapComponent";
+export { default as TerrainLayerComponent } from "./Modules/AngularMapLibreGLModule/Components/TerrainLayerComponent/TerrainLayerComponent";

@@ -11,7 +11,6 @@ export default class MapComponent implements OnInit {
   Center: [number, number] = [0, 0];
   @Input()
   Zoom: number = 1;
-
   @ViewChild("MapContainer", { static: true })
   MapContainer!: ElementRef<HTMLElement>;
   Map!: Map;
