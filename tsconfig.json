@@ -3,7 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "AngularMapLibreGL": ["dist/angular-map-libre-gl"]
+      "AngularMapLibreGL": ["dist/angular-deck.gl-map"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
