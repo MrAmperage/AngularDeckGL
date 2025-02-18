@@ -1,19 +1,14 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import { ElevationDecoder } from "./TerrainLayerComponentTypes";
 import { RefinementStrategy } from "@deck.gl/geo-layers/dist/tileset-2d";
-import { MapboxOverlay } from "@deck.gl/mapbox";
-import { IControl } from "maplibre-gl";
-import MapComponent from "../MapComponent/MapComponent";
+import BaseLayerComponent from "../BaseLayerComponent/BaseLayerComponent";
 
 @Component({
   selector: "TerrainLayerComponent",
   templateUrl: "TerrainLayerComponent.html",
 })
-export default class TerrainLayerComponent implements OnInit, OnDestroy {
-  TerrainLayer!: TerrainLayer;
-  Overlay!: IControl;
-  constructor(private MapComponent: MapComponent) {}
+export default class TerrainLayerComponent extends BaseLayerComponent<TerrainLayer> {
   @Input() ElevationDecoder: ElevationDecoder = {
     rScaler: 6553.6,
     gScaler: 25.6,
@@ -25,18 +20,14 @@ export default class TerrainLayerComponent implements OnInit, OnDestroy {
   @Input()
   RefinementStrategy: RefinementStrategy = "no-overlap";
   @Input()
-  Id: string = "TerrainLayer";
-  @Input()
   Wireframe: boolean = false;
   @Input({ required: true })
   Texture!: string;
   @Input({ required: true })
   ElevationData!: string;
-  @Input()
-  Interleaved: boolean = false;
 
-  InitLayer() {
-    this.TerrainLayer = new TerrainLayer({
+  PrepareLayer() {
+    this.Layer = new TerrainLayer({
       refinementStrategy: this.RefinementStrategy,
       wireframe: this.Wireframe,
       id: this.Id,
@@ -45,20 +36,5 @@ export default class TerrainLayerComponent implements OnInit, OnDestroy {
       elevationData: this.ElevationData,
       bounds: this.Bounds,
     });
-    this.Overlay = new MapboxOverlay({
-      interleaved: this.Interleaved,
-      id: this.Id,
-      layers: [this.TerrainLayer],
-    }) as IControl;
-    this.MapComponent.Map.addControl(this.Overlay);
-  }
-  RemoveLayer() {
-    this.MapComponent.Map.removeControl(this.Overlay);
-  }
-  ngOnInit(): void {
-    this.InitLayer();
-  }
-  ngOnDestroy(): void {
-    this.RemoveLayer();
   }
 }

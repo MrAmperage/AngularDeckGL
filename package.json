@@ -3,15 +3,15 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^19.1.4",
-    "@angular/core": "^19.1.4"
+    "@angular/core": "^19.1.4",
+    "ng-zorro-antd": "^19.0.2"
   },
   "dependencies": {
-    "@deck.gl/core": "^9.1.1",
-    "@deck.gl/geo-layers": "^9.1.1",
-    "@deck.gl/mapbox": "^9.1.1",
-    "@deck.gl/mesh-layers": "^9.1.1",
-    "tslib": "^2.8.1",
-    "maplibre-gl": "^5.1.0"
+    "@deck.gl/core": "^9.1.2",
+    "@deck.gl/geo-layers": "^9.1.2",
+    "@deck.gl/mapbox": "^9.1.2",
+    "@deck.gl/mesh-layers": "^9.1.2",
+    "tslib": "^2.8.1"
   },
   "sideEffects": false,
   "devDependencies": {

@@ -1,6 +1,3 @@
-/*
- * Public API Surface of angular-map-libre-gl
- */
-
-export { default as MapComponent } from "./Modules/AngularMapLibreGLModule/Components/MapComponent/MapComponent";
-export { default as TerrainLayerComponent } from "./Modules/AngularMapLibreGLModule/Components/TerrainLayerComponent/TerrainLayerComponent";
+export { default as DeckGLComponent } from "./Modules/AngularMapLibreGLModule/Components/DeckGLComponent/DeckGLComponent";
+export { default as TileLayerComponent } from "./Modules/AngularMapLibreGLModule/Components/TileLayerComponent/TileLayerComponent";
+export { default as TerrainLayer } from "./Modules/AngularMapLibreGLModule/Components/TerrainLayerComponent/TerrainLayerComponent";
