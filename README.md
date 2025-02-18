@@ -1,2 +1,3 @@
-# AngularMapLibreGL
-Andular оболочка для MapLibreGL
+# AngularDeckGLMap
+
+Andular оболочка для карты на Deck.gl
