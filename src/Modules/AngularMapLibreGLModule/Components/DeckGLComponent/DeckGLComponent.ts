@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { Deck, Layer } from "@deck.gl/core";
+import { Deck, Layer, Widget } from "@deck.gl/core";
 
 @Component({
   selector: "DeckGLComponent",
@@ -31,7 +31,12 @@ export default class DeckGLComponent implements OnInit {
   @ViewChild("Canvas", { static: true })
   Canvas!: ElementRef<HTMLCanvasElement>;
 
-  /*Добавление слоя в DeckGL*/
+  /*Добавление виджетов в DeckGL*/
+  AddWidgets(Widgets: Widget[]) {
+    const OldWigets = this.DeckGL.props.widgets;
+    this.DeckGL.setProps({ widgets: OldWigets.concat(Widgets) });
+  }
+  /*Добавление слоев в DeckGL*/
   AddLayers(Layers: Layer[]) {
     const OldLayers = this.DeckGL.props.layers;
     this.DeckGL.setProps({ layers: OldLayers.concat(Layers) });
