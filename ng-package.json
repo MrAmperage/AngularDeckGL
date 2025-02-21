@@ -9,12 +9,5 @@
     "@deck.gl/geo-layers",
     "@deck.gl/mapbox",
     "@deck.gl/mesh-layers"
-  ],
-  "assets": [
-    {
-      "glob": "**/*",
-      "input": "./src/Modules/AngularMapLibreGLModule/Components/MapPlugins/Styles",
-      "output": "./Styles"
-    }
   ]
 }
