@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, ElementRef, Input, OnInit } from "@angular/core";
 import { Widget, WidgetPlacement } from "@deck.gl/core";
 import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
 
@@ -7,13 +7,14 @@ import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
   selector: "BaseWidgetComponent",
   templateUrl: "BaseWidgetComponent.html",
 })
-export default abstract class BaseWidgetComponent<WidgetClass extends Widget>
-  implements OnInit
-{
-  constructor(protected DeckGLComponent: DeckGLComponent) {}
-  Widget!: WidgetClass;
+export default abstract class BaseWidgetComponent implements OnInit {
+  constructor(
+    protected DeckGLComponent: DeckGLComponent,
+    protected HostElement: ElementRef
+  ) {}
   @Input({ required: true })
   Id!: string;
+  Widget!: Widget;
   @Input()
   Placement: WidgetPlacement = "top-left";
 
