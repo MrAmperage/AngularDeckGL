@@ -16,4 +16,9 @@
 }
 .WidgetContainer {
   background-color: var(--BackgroundColor);
+  pointer-events: visible;
+}
+
+.Clicked {
+  cursor: pointer;
 }

@@ -3,7 +3,7 @@ import { Component, HostListener, Input } from "@angular/core";
 @Component({
   selector: "BaseLoaderComponent",
   templateUrl: "BaseLoaderComponent.html",
-  host: { class: "WidgetContainer" },
+  host: { class: "FlexCenter Clicked" },
 })
 export default abstract class BaseLoaderComponent {
   constructor() {}

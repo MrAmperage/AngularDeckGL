@@ -6,6 +6,7 @@ import DeckGLComponent from "../../Components/DeckGLComponent/DeckGLComponent";
 @Component({
   selector: "BaseWidgetComponent",
   templateUrl: "BaseWidgetComponent.html",
+  host: { class: "WidgetContainer" },
 })
 export default abstract class BaseWidgetComponent implements OnInit {
   constructor(
