@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit } from "@angular/core";
 import { Widget, WidgetPlacement } from "@deck.gl/core";
 import DeckGLComponent from "../../Components/DeckGLComponent/DeckGLComponent";
-import ToolbarWidgetComponent from "../../Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
 
 /*Базовый класс для виджетов */
 @Component({
@@ -11,26 +10,20 @@ import ToolbarWidgetComponent from "../../Widgets/ToolbarWidgetComponent/Toolbar
 export default abstract class BaseWidgetComponent implements OnInit {
   constructor(
     protected DeckGLComponent: DeckGLComponent,
-    protected HostElement: ElementRef,
-    protected ToolbarWidgetComponent: ToolbarWidgetComponent
+    protected HostElement: ElementRef
   ) {
     this.Widget = this.GetBaseWidget();
   }
-  @Input({ required: true })
+
   @Input()
   Placement: WidgetPlacement = "top-left";
+  @Input({ required: true })
   Id!: string;
   Widget: Widget;
   /*Подготовка виджета.Переопределить если потребуется */
   abstract PrepareWidget(): void;
   InitWidget() {
     this.DeckGLComponent.AddWidgets([this.Widget]);
-  }
-  /*Возвращает лоадер для виджета */
-  abstract get GetWidgetLoader(): Component | undefined;
-  ngOnInit(): void {
-    this.PrepareWidget();
-    this.InitWidget();
   }
   GetBaseWidget(): Widget {
     return {
@@ -43,5 +36,9 @@ export default abstract class BaseWidgetComponent implements OnInit {
       },
       setProps: (Props) => {},
     };
+  }
+  ngOnInit(): void {
+    this.PrepareWidget();
+    this.InitWidget();
   }
 }

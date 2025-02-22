@@ -1,0 +1,19 @@
+:root {
+  --BackgroundColor: #002140;
+  --TextColor: "#ffffff";
+  --ErrorColor: "#ff0000";
+}
+
+.FlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.FlexColumn {
+  display: flex;
+  flex-direction: column;
+}
+.WidgetContainer {
+  background-color: var(--BackgroundColor);
+}

@@ -8,7 +8,4 @@ import BaseWidgetComponent from "../BaseWidgetComponent/BaseWidgetComponent";
 })
 export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent {
   override PrepareWidget(): void {}
-  override get GetWidgetLoader(): Component | undefined {
-    return;
-  }
 }
