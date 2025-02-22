@@ -25,12 +25,6 @@ export default abstract class BaseWidgetComponent implements OnInit {
   abstract PrepareWidget(): void;
   InitWidget() {
     this.DeckGLComponent.AddWidgets([this.Widget]);
-    if (
-      this.ToolbarWidgetComponent !== undefined &&
-      this.GetWidgetLoader !== undefined
-    ) {
-      this.ToolbarWidgetComponent.AddWidgetLoader(this.GetWidgetLoader);
-    }
   }
   /*Возвращает лоадер для виджета */
   abstract get GetWidgetLoader(): Component | undefined;

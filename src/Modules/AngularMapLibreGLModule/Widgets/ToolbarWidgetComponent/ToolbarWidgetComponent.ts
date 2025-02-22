@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import BaseWidgetComponent from "../BaseWidgetComponent/BaseWidgetComponent";
+import BaseLoaderComponent from "../BaseWidgetComponent/BaseLoaderComponent/BaseLoaderComponent";
 /*Виджет тулбара с кнопками для тругих виджетов */
 @Component({
   selector: "ToolbarWidgetComponent",
@@ -8,8 +9,8 @@ import BaseWidgetComponent from "../BaseWidgetComponent/BaseWidgetComponent";
 })
 export default class ToolbarWidgetComponent extends BaseWidgetComponent {
   /*Добавляем лоадер с иконкой для виджета */
-  AddWidgetLoader(IconComponent: Component) {
-    console.log(IconComponent);
+  AddWidgetLoader(LoaderComponent: BaseLoaderComponent) {
+    console.log(LoaderComponent);
   }
   override PrepareWidget(): void {}
   /*Лоадер не требуется */
