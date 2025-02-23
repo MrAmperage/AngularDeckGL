@@ -7,5 +7,6 @@ import BaseWidgetComponent from "../BaseWidgetComponent/BaseWidgetComponent";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent {
+  override Id: string= "DrillingProjects"
   override PrepareWidget(): void {}
 }

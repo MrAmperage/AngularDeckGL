@@ -1,3 +1,8 @@
-<div class="FlexColumn">
-  <ng-content></ng-content>
+<div class="Toolbar">
+  <div class="FlexColumn">
+    <ng-content></ng-content>
+  </div>
+  <div class="WidgetColumn">
+    <ng-container #WidgetsContainer></ng-container>
+  </div>
 </div>
