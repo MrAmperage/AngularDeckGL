@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import BaseLoaderComponent from "../BaseLoaderComponent/BaseLoaderComponent";
+
 @Component({
   selector: "DrillingProjectLoaderComponent",
   templateUrl: "DrillingProjectLoaderComponent.svg",

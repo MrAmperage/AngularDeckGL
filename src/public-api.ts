@@ -4,3 +4,4 @@ export { default as TerrainLayer } from "./Modules/AngularMapLibreGLModule/Compo
 export { default as DrillingProjectsWidgetComponent } from "./Modules/AngularMapLibreGLModule/Widgets/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent";
 export { default as ToolbarWidgetComponent } from "./Modules/AngularMapLibreGLModule/Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
 export { default as DrillingProjectLoaderComponent } from "./Modules/AngularMapLibreGLModule/WidgetLoaders/DrillingProjectLoaderComponent/DrillingProjectLoaderComponent";
+export { default as MapService } from "./Modules/AngularMapLibreGLModule/Services/MapService/MapService";
