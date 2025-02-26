@@ -1,7 +1,7 @@
 :root {
   --BackgroundColor: #002140;
-  --TextColor: "#ffffff";
-  --ErrorColor: "#ff0000";
+  --TextColor: #ffffff;
+  --ErrorColor: #ff0000;
 }
 
 .FlexCenter {
@@ -24,8 +24,24 @@
   width: fit-content;
   height: fit-content;
   padding: 5px;
+  color: var(--TextColor);
 }
 
 .Clicked {
   cursor: pointer;
+}
+
+.WidgetRow {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px 0px 10px;
+  white-space: nowrap;
+  gap: 10px;
+}
+
+.Error {
+  color: var(--ErrorColor);
 }

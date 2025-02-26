@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit } from "@angular/core";
 import { Widget, WidgetPlacement } from "@deck.gl/core";
-import DeckGLComponent from "../../Components/DeckGLComponent/DeckGLComponent";
+import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
 import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
 
