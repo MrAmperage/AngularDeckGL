@@ -9,24 +9,28 @@ import ToolbarWidgetComponent from "../../Widgets/ToolbarWidgetComponent/Toolbar
 })
 export default class DrillingProjectLoaderComponent extends BaseLoaderComponent {
   constructor(
-    @Inject(MapService) MapService: MapService,
-    private ToolbarWidgetComponent: ToolbarWidgetComponent
+    MapService: MapService,
+    ToolbarWidgetComponent: ToolbarWidgetComponent
   ) {
-    super(MapService);
+    super(MapService, ToolbarWidgetComponent);
   }
 
-  override ClickOnLoader(): void { 
-    import("../../Widgets/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent").then((Widget)=>{
-    super.ClickOnLoader()
-    if(this.WidgetOption.IsShow){
- 
-    Widget.default
-     this.ToolbarWidgetComponent.AddWidgetComponent(Widget.default,this.WidgetOption)
- 
-    }else{
-      this.ToolbarWidgetComponent.RemoveWidgetComponentById(this.WidgetOption.Id)
-    }
+  override ClickOnLoader(): void {
+    import(
+      "../../Widgets/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent"
+    ).then((Widget) => {
+      super.ClickOnLoader();
 
-    })
+      if (this.GetInternalWidgetOption?.IsShow) {
+        Widget.default;
+        this.ToolbarWidgetComponent.AddWidgetComponent(Widget.default);
+      } else {
+        if (this.GetInternalWidgetOption !== undefined) {
+          this.ToolbarWidgetComponent.RemoveWidgetComponentById(
+            this.GetInternalWidgetOption.Id
+          );
+        }
+      }
+    });
   }
 }

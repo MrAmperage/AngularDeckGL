@@ -1,6 +1,14 @@
-import { ChangeDetectionStrategy, Component, ViewChild, ViewContainerRef } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Injectable,
+  Type,
+  ViewChild,
+  ViewContainerRef,
+} from "@angular/core";
 import BaseWidgetComponent from "../BaseWidgetComponent/BaseWidgetComponent";
 import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
+import { InternalWidgetOption } from "../../WidgetLoaders/BaseLoaderComponent/BaseLoaderComponentTypes";
 
 /*Виджет тулбара с кнопками для тругих виджетов */
 @Component({
@@ -10,28 +18,26 @@ import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ToolbarWidgetComponent extends BaseWidgetComponent {
-InternalWidgetOptions:WidgetOption[]=[]
+  InternalWidgetOptions: InternalWidgetOption[] = [];
 
   @ViewChild("WidgetsContainer", { static: true, read: ViewContainerRef })
-  WidgetsContainer!: ViewContainerRef
+  WidgetsContainer!: ViewContainerRef;
   /*Добавление виджета в тулбар */
-  AddWidgetComponent(WidgetComponent:typeof BaseWidgetComponent,WidgetOption:WidgetOption){
-   this.WidgetsContainer.createComponent(WidgetComponent)
-   this.AddInternalWidget(WidgetOption)
+  AddWidgetComponent(WidgetComponent: Type<BaseWidgetComponent>) {
+    this.WidgetsContainer.createComponent(WidgetComponent);
   }
- private AddInternalWidget(WidgetOption:WidgetOption){
-  this.InternalWidgetOptions.push(WidgetOption)
- }
-  RemoveWidgetComponentById(WidgetComponentId:string){
-const RemoveIndex= this.InternalWidgetOptions.findIndex((Option)=>{
-  return Option.Id === WidgetComponentId
-})
-if(RemoveIndex!==-1){
- this.WidgetsContainer.remove(RemoveIndex) 
-}
+  AddInternalWidget(WidgetOption: WidgetOption) {
+    this.InternalWidgetOptions.push({ Id: WidgetOption.Id, IsShow: false });
+    return this.InternalWidgetOptions[this.InternalWidgetOptions.length - 1];
+  }
+  RemoveWidgetComponentById(WidgetComponentId: string) {
+    const RemoveIndex = this.InternalWidgetOptions.findIndex((Option) => {
+      return Option.Id === WidgetComponentId;
+    });
+    if (RemoveIndex !== -1) {
+      this.WidgetsContainer.remove(RemoveIndex);
+    }
   }
 
-  override PrepareWidget(): void { }
-
-
+  override PrepareWidget(): void {}
 }

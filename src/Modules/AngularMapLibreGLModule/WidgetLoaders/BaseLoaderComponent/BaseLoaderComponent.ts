@@ -1,22 +1,25 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Directive,
   HostListener,
   Input,
   OnInit,
 } from "@angular/core";
 import MapService from "../../Services/MapService/MapService";
 import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
+import ToolbarWidgetComponent from "../../Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
+import { InternalWidgetOption } from "./BaseLoaderComponentTypes";
 
-@Component({
+@Directive({
   selector: "BaseLoaderComponent",
-  templateUrl: "BaseLoaderComponent.html",
   host: { class: "FlexCenter Clicked" },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default abstract class BaseLoaderComponent implements OnInit {
-  WidgetOption!: WidgetOption;
-  constructor(protected MapService: MapService) {}
+  constructor(
+    protected MapService: MapService,
+    protected ToolbarWidgetComponent: ToolbarWidgetComponent
+  ) {}
   @Input({ required: true })
   Id!: string;
   @Input()
@@ -27,15 +30,30 @@ export default abstract class BaseLoaderComponent implements OnInit {
   Fill: string = "#ffffff";
   @Input()
   Stroke: string = "#ffffff";
-  @HostListener("click")
   /*Переопределить загрузчик для каждого лоадера */
+  @HostListener("click")
   ClickOnLoader() {
-    this.WidgetOption.IsShow = !this.WidgetOption.IsShow;
+    const InternalWidgetIndex =
+      this.ToolbarWidgetComponent.InternalWidgetOptions.findIndex((Options) => {
+        return Options.Id === this.GetInternalWidgetOption?.Id;
+      });
+    if (InternalWidgetIndex !== -1) {
+      this.ToolbarWidgetComponent.InternalWidgetOptions[
+        InternalWidgetIndex
+      ].IsShow =
+        !this.ToolbarWidgetComponent.InternalWidgetOptions[InternalWidgetIndex]
+          .IsShow;
+    }
   }
-
+  get GetInternalWidgetOption() {
+    return this.ToolbarWidgetComponent.InternalWidgetOptions.find((Option) => {
+      return Option.Id === this.Id;
+    });
+  }
   InitLoader() {
-    this.WidgetOption = { Id: this.Id, IsShow: false };
-    this.MapService.AddWidget(this.WidgetOption);
+    const InternalWidgetOption = { Id: this.Id, IsShow: false };
+    this.MapService.AddWidget(InternalWidgetOption);
+    this.ToolbarWidgetComponent.AddInternalWidget(InternalWidgetOption);
   }
   ngOnInit(): void {
     this.InitLoader();

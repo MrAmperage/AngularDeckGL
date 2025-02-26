@@ -9,6 +9,6 @@ import TitlePanelComponent from "../../Components/TitlePanelComponent/TitlePanel
   imports: [TitlePanelComponent],
 })
 export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent {
-  override Id: string= "DrillingProjects"
+  override Id: string = "DrillingProjects";
   override PrepareWidget(): void {}
 }

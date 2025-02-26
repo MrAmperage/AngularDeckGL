@@ -8,4 +8,9 @@ export default class MapService {
   AddWidget(WidgetOption: WidgetOption) {
     this.WidgetsOptions.push(WidgetOption);
   }
+  GetWidgetOptionById(Id: string) {
+    return this.WidgetsOptions.find((Option) => {
+      return Option.Id === Id;
+    });
+  }
 }

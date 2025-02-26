@@ -1,16 +1,15 @@
-import { Component, ElementRef, Input, OnInit } from "@angular/core";
+import { Directive, ElementRef, Injector, Input, OnInit } from "@angular/core";
 import { Widget, WidgetPlacement } from "@deck.gl/core";
 import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
 import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
 
 /*Базовый класс для виджетов */
-@Component({
+@Directive({
   selector: "BaseWidgetComponent",
-  templateUrl: "BaseWidgetComponent.html",
   host: { class: "WidgetContainer" },
 })
-export default class BaseWidgetComponent implements OnInit {
+export default abstract class BaseWidgetComponent implements OnInit {
   constructor(
     protected DeckGLComponent: DeckGLComponent,
     protected HostElement: ElementRef,
@@ -27,13 +26,10 @@ export default class BaseWidgetComponent implements OnInit {
   /*Подготовка виджета.Переопределить если потребуется */
   PrepareWidget() {}
   InitWidget() {
-    const CurrentWidget = this.MapService.WidgetsOptions.find(
-      (WidgetOption) => {
-        return WidgetOption.Id === this.Id;
-      }
-    );
-    if (CurrentWidget === undefined) {
-      this.MapService.AddWidget({ Id: this.Id, IsShow: true });
+    this.WidgetOption = { Id: this.Id };
+    const WidgetOption = this.MapService.GetWidgetOptionById(this.Id);
+    if (WidgetOption === undefined) {
+      this.MapService.AddWidget(this.WidgetOption);
       this.DeckGLComponent.AddWidgets([this.Widget]);
     }
   }
