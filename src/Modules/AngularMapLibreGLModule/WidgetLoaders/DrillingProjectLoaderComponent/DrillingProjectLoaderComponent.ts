@@ -15,12 +15,18 @@ export default class DrillingProjectLoaderComponent extends BaseLoaderComponent 
     super(MapService);
   }
 
-  override ClickOnLoader(): void {
+  override ClickOnLoader(): void { 
+    import("../../Widgets/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent").then((Widget)=>{
+    super.ClickOnLoader()
+    if(this.WidgetOption.IsShow){
+ 
+    Widget.default
+     this.ToolbarWidgetComponent.AddWidgetComponent(Widget.default,this.WidgetOption)
+ 
+    }else{
+      this.ToolbarWidgetComponent.RemoveWidgetComponentById(this.WidgetOption.Id)
+    }
 
-  
-  import("../../Widgets/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent").then((Widget)=>{
-     this.ToolbarWidgetComponent.AddWidgetComponent(Widget.default)
-  })
-   super.ClickOnLoader()
+    })
   }
 }

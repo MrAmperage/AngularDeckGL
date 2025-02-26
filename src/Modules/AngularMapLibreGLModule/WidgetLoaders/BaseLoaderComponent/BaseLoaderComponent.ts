@@ -6,6 +6,7 @@ import {
   OnInit,
 } from "@angular/core";
 import MapService from "../../Services/MapService/MapService";
+import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
 
 @Component({
   selector: "BaseLoaderComponent",
@@ -14,6 +15,7 @@ import MapService from "../../Services/MapService/MapService";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default abstract class BaseLoaderComponent implements OnInit {
+  WidgetOption!: WidgetOption;
   constructor(protected MapService: MapService) {}
   @Input({ required: true })
   Id!: string;
@@ -28,16 +30,12 @@ export default abstract class BaseLoaderComponent implements OnInit {
   @HostListener("click")
   /*Переопределить загрузчик для каждого лоадера */
   ClickOnLoader() {
-    if (this.GetLoaderOption !== undefined) {
-      this.GetLoaderOption.IsShow = !this.GetLoaderOption.IsShow;
-    }
+    this.WidgetOption.IsShow = !this.WidgetOption.IsShow;
   }
 
-  get GetLoaderOption() {
-    return this.MapService.GetLoaderOptionsById(this.Id);
-  }
   InitLoader() {
-    this.MapService.AddLoader({ Id: this.Id, IsShow: false });
+    this.WidgetOption = { Id: this.Id, IsShow: false };
+    this.MapService.AddWidget(this.WidgetOption);
   }
   ngOnInit(): void {
     this.InitLoader();

@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit } from "@angular/core";
 import { Widget, WidgetPlacement } from "@deck.gl/core";
 import DeckGLComponent from "../../Components/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
+import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
 
 /*Базовый класс для виджетов */
 @Component({
@@ -17,7 +18,7 @@ export default class BaseWidgetComponent implements OnInit {
   ) {
     this.Widget = this.GetBaseWidget();
   }
-
+  WidgetOption!: WidgetOption;
   @Input()
   Placement: WidgetPlacement = "top-left";
   @Input({ required: true })
@@ -26,10 +27,13 @@ export default class BaseWidgetComponent implements OnInit {
   /*Подготовка виджета.Переопределить если потребуется */
   PrepareWidget() {}
   InitWidget() {
-    const CurrentLoader = this.MapService.LoadersOptions.find((Loader) => {
-      return Loader.Id === this.Id;
-    });
-    if (CurrentLoader === undefined) {
+    const CurrentWidget = this.MapService.WidgetsOptions.find(
+      (WidgetOption) => {
+        return WidgetOption.Id === this.Id;
+      }
+    );
+    if (CurrentWidget === undefined) {
+      this.MapService.AddWidget({ Id: this.Id, IsShow: true });
       this.DeckGLComponent.AddWidgets([this.Widget]);
     }
   }
