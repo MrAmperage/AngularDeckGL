@@ -1,15 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Directive,
-  HostListener,
-  Input,
-  OnInit,
-} from "@angular/core";
+import { Directive, HostListener, Input, OnInit } from "@angular/core";
 import MapService from "../../Services/MapService/MapService";
-import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
 import ToolbarWidgetComponent from "../../Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
-import { InternalWidgetOption } from "./BaseLoaderComponentTypes";
 
 @Directive({
   selector: "BaseLoaderComponent",
