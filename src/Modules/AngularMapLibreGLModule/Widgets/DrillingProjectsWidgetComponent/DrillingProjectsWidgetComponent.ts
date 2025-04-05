@@ -4,6 +4,7 @@ import TitlePanelComponent from "../../Components/TitlePanelComponent/TitlePanel
 import DrillingProjectsWidgetSwitchersComponent from "../../Components/DrillingProjectsWidgetSwitchersComponent/DrillingProjectsWidgetSwitchersComponent";
 import { NzSelectComponent } from "ng-zorro-antd/select";
 import { NzSwitchComponent } from "ng-zorro-antd/switch";
+import DateTimeIntervalComponent from "../../Components/DateTimeIntervalComponent/DateTimeIntervalComponent";
 
 @Component({
   selector: "DrillingProjectsWidgetComponent",
@@ -15,6 +16,7 @@ import { NzSwitchComponent } from "ng-zorro-antd/switch";
     DrillingProjectsWidgetSwitchersComponent,
     NzSelectComponent,
     NzSwitchComponent,
+    DateTimeIntervalComponent,
   ],
 })
 export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent {
