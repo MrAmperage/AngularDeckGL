@@ -7,14 +7,14 @@
     "ng-zorro-antd": "^19.0.2"
   },
   "dependencies": {
-    "@deck.gl/core": "^9.1.6",
-    "@deck.gl/geo-layers": "^9.1.6",
-    "@deck.gl/mesh-layers": "^9.1.6",
+    "@deck.gl/core": "^9.1.8",
+    "@deck.gl/geo-layers": "^9.1.8",
+    "@deck.gl/mesh-layers": "^9.1.8",
     "tslib": "^2.8.1"
   },
   "sideEffects": false,
   "devDependencies": {
-    "ng-packagr": "^19.2.0"
+    "ng-packagr": "^19.2.1"
   },
   "scripts": {
     "build": "ng-packagr -p ng-package.json"
