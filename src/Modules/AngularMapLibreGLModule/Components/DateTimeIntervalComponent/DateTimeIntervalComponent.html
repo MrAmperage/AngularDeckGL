@@ -1,10 +1,27 @@
 <div class="WidgetRow">
   <div class="FlexRowGroup">
     <nz-icon nzType="step-backward" nzTheme="fill" />
-    <nz-date-picker [nzSize]="'small'" />
+    <nz-date-picker
+      [nzSize]="'small'"
+      [nzShowTime]="true"
+      [nzShowToday]="false"
+      [nzShowNow]="false"
+    />
   </div>
   <div class="FlexRowGroup">
     <nz-icon nzType="step-forward" nzTheme="fill" />
-    <nz-date-picker [nzSize]="'small'" />
+    <nz-date-picker
+      [nzSize]="'small'"
+      [nzShowTime]="true"
+      [nzShowToday]="false"
+      [nzShowNow]="false"
+    />
   </div>
+</div>
+<div class="WidgetRow" *ngIf="this.IsShowShiftOptions">
+  <div class="FlexRowGroup">
+    <nz-icon nzType="clock-circle" nzTheme="outline" />
+    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
+  </div>
+  <div>В работе <nz-switch /></div>
 </div>
