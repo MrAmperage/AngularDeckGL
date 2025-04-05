@@ -49,3 +49,8 @@
 .Error {
   color: var(--ErrorColor);
 }
+
+.MapWidgetSwitchersGrid {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
