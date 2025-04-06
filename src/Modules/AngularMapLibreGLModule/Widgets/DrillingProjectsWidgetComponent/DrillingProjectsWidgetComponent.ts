@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import BaseWidgetComponent from "../BaseWidgetComponent/BaseWidgetComponent";
 import TitlePanelComponent from "../../Components/TitlePanelComponent/TitlePanelComponent";
 import DrillingProjectsWidgetSwitchersComponent from "../../Components/DrillingProjectsWidgetSwitchersComponent/DrillingProjectsWidgetSwitchersComponent";
-import { NzSelectComponent } from "ng-zorro-antd/select";
-import { NzSwitchComponent } from "ng-zorro-antd/switch";
 import DateTimeIntervalComponent from "../../Components/DateTimeIntervalComponent/DateTimeIntervalComponent";
+import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzSwitchModule } from "ng-zorro-antd/switch";
+import { NzButtonModule } from "ng-zorro-antd/button";
 
 @Component({
   selector: "DrillingProjectsWidgetComponent",
@@ -14,9 +15,10 @@ import DateTimeIntervalComponent from "../../Components/DateTimeIntervalComponen
   imports: [
     TitlePanelComponent,
     DrillingProjectsWidgetSwitchersComponent,
-    NzSelectComponent,
-    NzSwitchComponent,
+    NzSelectModule,
+    NzSwitchModule,
     DateTimeIntervalComponent,
+    NzButtonModule,
   ],
 })
 export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent {

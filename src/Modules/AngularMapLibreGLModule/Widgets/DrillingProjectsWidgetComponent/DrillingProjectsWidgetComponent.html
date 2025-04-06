@@ -28,3 +28,25 @@
   <div>Фактические <nz-switch [nzSize]="'small'" /></div>
 </div>
 <DateTimeIntervalComponent [IsShowShiftOptions]="true" />
+<div class="WidgetRow">
+  <div>Активные <nz-switch [nzSize]="'small'" /></div>
+  <div>3D вид <nz-switch [nzSize]="'small'" /></div>
+</div>
+<div class="WidgetRow">
+  <div><button nz-button>Показать</button></div>
+  <div class="FlexRowGroup">
+    <div>
+      <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'">
+        <nz-option [nzValue]="'XML'" [nzLabel]="'XML'" />
+        <nz-option [nzValue]="'DXF'" [nzLabel]="'DXF'" />
+        <nz-option [nzValue]="'Проектные скв.'" [nzLabel]="'ProjectWells'" />
+        <nz-option [nzValue]="'Фактические скв.'" [nzLabel]="'FactWells'" />
+        <nz-option [nzValue]="'Скв. сводно'" [nzLabel]="'SummaryWells'" />
+        <nz-option [nzValue]="'Скв. факт XYZ'" [nzLabel]="'FactWellsXYZ'" />
+      </nz-select>
+    </div>
+    <div>
+      <button nz-button>Экспорт</button>
+    </div>
+  </div>
+</div>
