@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Injectable,
   Type,
   ViewChild,
   ViewContainerRef,

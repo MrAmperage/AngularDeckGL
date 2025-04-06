@@ -39,14 +39,20 @@
       <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'">
         <nz-option [nzValue]="'XML'" [nzLabel]="'XML'" />
         <nz-option [nzValue]="'DXF'" [nzLabel]="'DXF'" />
-        <nz-option [nzValue]="'Проектные скв.'" [nzLabel]="'ProjectWells'" />
-        <nz-option [nzValue]="'Фактические скв.'" [nzLabel]="'FactWells'" />
-        <nz-option [nzValue]="'Скв. сводно'" [nzLabel]="'SummaryWells'" />
-        <nz-option [nzValue]="'Скв. факт XYZ'" [nzLabel]="'FactWellsXYZ'" />
+        <nz-option [nzLabel]="'Проектные скв.'" [nzValue]="'ProjectWells'" />
+        <nz-option [nzLabel]="'Фактические скв.'" [nzValue]="'FactWells'" />
+        <nz-option [nzLabel]="'Скв. сводно'" [nzValue]="'SummaryWells'" />
+        <nz-option [nzLabel]="'Скв. факт XYZ'" [nzValue]="'FactWellsXYZ'" />
       </nz-select>
     </div>
     <div>
       <button nz-button>Экспорт</button>
     </div>
+  </div>
+</div>
+<div class="WidgetRow">
+  <div><nz-icon nzType="eye" nzTheme="outline" /></div>
+  <div>
+    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Injector, Input, OnInit } from "@angular/core";
+import { Directive, ElementRef, Input, OnInit } from "@angular/core";
 import { Widget, WidgetPlacement } from "@deck.gl/core";
 import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
