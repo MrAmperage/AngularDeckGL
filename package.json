@@ -14,7 +14,7 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "ng-packagr": "^19.2.1"
+    "ng-packagr": "^19.2.2"
   },
   "scripts": {
     "build": "ng-packagr -p ng-package.json"
