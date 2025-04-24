@@ -53,6 +53,13 @@
 <div class="WidgetRow">
   <div><nz-icon nzType="eye" nzTheme="outline" /></div>
   <div>
-    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
+    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'">
+      <nz-option [nzLabel]="'Наведение'" [nzValue]="'Guidance'" />
+      <nz-option [nzLabel]="'Буровой станок'" [nzValue]="'DrillingRig'" />
+      <nz-option [nzLabel]="'Глубина бурения'" [nzValue]="'DrillingDepth'" />
+      <nz-option [nzLabel]="'Горизонтирование'" [nzValue]="'Levelling'" />
+      <nz-option [nzLabel]="'Угол бурения'" [nzValue]="'DrillingAngle'" />
+      <nz-option [nzLabel]="'Азимут бурения'" [nzValue]="'DrillingAzimuth'" />
+    </nz-select>
   </div>
 </div>
