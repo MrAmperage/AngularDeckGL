@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { Deck, Layer, Widget } from "@deck.gl/core";
+import { Deck, Layer, View, Widget } from "@deck.gl/core";
 
 @Component({
   selector: "DeckGLComponent",
@@ -15,6 +15,8 @@ import { Deck, Layer, Widget } from "@deck.gl/core";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class DeckGLComponent implements OnInit {
+  @Input()
+  Controller: View["props"]["controller"];
   DeckGL!: Deck;
   @Input()
   Center: [number, number] = [0, 0];
@@ -54,7 +56,7 @@ export default class DeckGLComponent implements OnInit {
         bearing: this.Bearing,
         minZoom: this.MinZoom,
       },
-      controller: true,
+      controller: this.Controller,
     });
   }
   ngOnInit(): void {

@@ -5,3 +5,4 @@ export { default as DrillingProjectsWidgetComponent } from "./Modules/AngularMap
 export { default as ToolbarWidgetComponent } from "./Modules/AngularMapLibreGLModule/Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
 export { default as DrillingProjectLoaderComponent } from "./Modules/AngularMapLibreGLModule/WidgetLoaders/DrillingProjectLoaderComponent/DrillingProjectLoaderComponent";
 export { default as MapService } from "./Modules/AngularMapLibreGLModule/Services/MapService/MapService";
+export { default as CustomMapController } from "./Modules/AngularMapLibreGLModule/LayerComponents/DeckGLComponent/CustomMapController/CustomMapController";
