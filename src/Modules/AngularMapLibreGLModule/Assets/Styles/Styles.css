@@ -9,7 +9,10 @@
   justify-content: center;
   align-items: center;
 }
-
+.FlexCenterVertical {
+  display: flex;
+  align-items: center;
+}
 .FlexColumn {
   display: flex;
   flex-direction: column;

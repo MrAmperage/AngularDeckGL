@@ -11,7 +11,6 @@
 </div>
 <div class="WidgetRow">
   <div>Буровой станок:</div>
-
   <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
 </div>
 <div class="WidgetRow">
@@ -56,5 +55,10 @@
     <nz-option [nzLabel]="'Угол бурения'" [nzValue]="'DrillingAngle'" />
     <nz-option [nzLabel]="'Азимут бурения'" [nzValue]="'DrillingAzimuth'" />
   </nz-select>
-  <DrillingRigSVGIconComponent [Height]="'30px'" [Width]="'30px'" />
+  <div class="FlexCenterVertical">
+    <DrillingRigSVGIconComponent [Height]="'30px'" [Width]="'30px'" />
+    <nz-switch [nzSize]="'small'" />
+  </div>
+  <button nz-button>Применить</button>
+  <button nz-button><nz-icon nzType="clear" nzTheme="outline" /></button>
 </div>

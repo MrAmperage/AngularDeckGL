@@ -12,7 +12,7 @@ import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzSwitchModule } from "ng-zorro-antd/switch";
 import { NzIconModule, NzIconService } from "ng-zorro-antd/icon";
 import { NzButtonModule } from "ng-zorro-antd/button";
-import { EyeOutline } from "@ant-design/icons-angular/icons";
+import { ClearOutline, EyeOutline } from "@ant-design/icons-angular/icons";
 import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
 import { DrillingProjectActualWellsIndication } from "./DrillingProjectsWidgetTypes";
@@ -46,7 +46,7 @@ export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent
     private IconService: NzIconService
   ) {
     super(DeckGLComponent, ElementRef, MapService);
-    this.IconService.addIcon(EyeOutline);
+    this.IconService.addIcon(EyeOutline, ClearOutline);
   }
   override Id: string = "DrillingProjects";
   //TODO Перенести индикацию в сервис
