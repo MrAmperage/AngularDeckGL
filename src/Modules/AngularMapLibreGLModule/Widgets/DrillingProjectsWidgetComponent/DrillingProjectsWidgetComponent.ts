@@ -15,6 +15,10 @@ import { NzButtonModule } from "ng-zorro-antd/button";
 import { EyeOutline } from "@ant-design/icons-angular/icons";
 import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
+import { DrillingProjectActualWellsIndication } from "./DrillingProjectsWidgetTypes";
+import { DrillingProjectsIndicationLegendMap } from "./DrillingProjectsIndicationLegendMap";
+import { IndicationColorLegendOption } from "../../Types/LibTypes";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "DrillingProjectsWidgetComponent",
@@ -29,6 +33,7 @@ import MapService from "../../Services/MapService/MapService";
     DateTimeIntervalComponent,
     NzButtonModule,
     NzIconModule,
+    FormsModule,
   ],
 })
 export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent {
@@ -42,5 +47,16 @@ export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent
     this.IconService.addIcon(EyeOutline);
   }
   override Id: string = "DrillingProjects";
+  //TODO Перенести индикацию в сервис
+  Indication: DrillingProjectActualWellsIndication = "Guidance";
+  IndicationOption?: IndicationColorLegendOption =
+    DrillingProjectsIndicationLegendMap.get(this.Indication);
+  ChangeIndication(Indication: DrillingProjectActualWellsIndication) {
+    this.IndicationOption = DrillingProjectsIndicationLegendMap.get(
+      this.Indication
+    );
+    this.Indication = Indication;
+  }
+
   override PrepareWidget(): void {}
 }

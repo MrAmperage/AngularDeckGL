@@ -53,7 +53,12 @@
 <div class="WidgetRow">
   <div><nz-icon nzType="eye" nzTheme="outline" /></div>
   <div>
-    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'">
+    <nz-select
+      [nzSize]="'small'"
+      [nzPlaceHolder]="'Выберите вариант'"
+      [ngModel]="this.Indication"
+      (ngModelChange)="this.ChangeIndication($event)"
+    >
       <nz-option [nzLabel]="'Наведение'" [nzValue]="'Guidance'" />
       <nz-option [nzLabel]="'Буровой станок'" [nzValue]="'DrillingRig'" />
       <nz-option [nzLabel]="'Глубина бурения'" [nzValue]="'DrillingDepth'" />
