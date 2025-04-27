@@ -19,6 +19,7 @@ import { DrillingProjectActualWellsIndication } from "./DrillingProjectsWidgetTy
 import { DrillingProjectsIndicationLegendMap } from "./DrillingProjectsIndicationLegendMap";
 import { IndicationColorLegendOption } from "../../Types/LibTypes";
 import { FormsModule } from "@angular/forms";
+import DrillingRigSVGIconComponent from "../../SVGIconComponents/DrillingRigSVGIconComponent/DrillingRigSVGIconComponent";
 
 @Component({
   selector: "DrillingProjectsWidgetComponent",
@@ -34,6 +35,7 @@ import { FormsModule } from "@angular/forms";
     NzButtonModule,
     NzIconModule,
     FormsModule,
+    DrillingRigSVGIconComponent,
   ],
 })
 export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent {

@@ -1,11 +1,10 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Directive, Input, OnInit } from "@angular/core";
 import { Layer } from "@deck.gl/core";
 import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
 
-/*Базовый компонент для слоев карты */
-@Component({
+/*Базовая родительская директива для слоев карты */
+@Directive({
   selector: "BaseLayerComponent",
-  templateUrl: "BaseLayerComponent.html",
 })
 export default abstract class BaseLayerComponent<LayerClass extends Layer>
   implements OnInit

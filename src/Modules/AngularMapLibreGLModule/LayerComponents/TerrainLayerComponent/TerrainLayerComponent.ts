@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import { ElevationDecoder } from "./TerrainLayerComponentTypes";
 import { RefinementStrategy } from "@deck.gl/geo-layers/dist/tileset-2d";
-import BaseLayerComponent from "../BaseLayerComponent/BaseLayerComponent";
+import BaseLayerComponent from "../BaseLayerDirective/BaseLayerDirective";
 
 @Component({
   selector: "TerrainLayerComponent",

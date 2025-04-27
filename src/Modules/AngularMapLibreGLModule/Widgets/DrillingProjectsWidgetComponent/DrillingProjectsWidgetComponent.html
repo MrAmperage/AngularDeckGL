@@ -7,21 +7,16 @@
 </TitlePanelComponent>
 <div class="WidgetRow">
   <div>Место работы:</div>
-  <div>
-    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
-  </div>
+  <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
 </div>
 <div class="WidgetRow">
   <div>Буровой станок:</div>
-  <div>
-    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
-  </div>
+
+  <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
 </div>
 <div class="WidgetRow">
   <div>Проект:</div>
-  <div>
-    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
-  </div>
+  <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'" />
 </div>
 <div class="WidgetRow">
   <div>Проектные <nz-switch [nzSize]="'small'" /></div>
@@ -33,38 +28,33 @@
   <div>3D вид <nz-switch [nzSize]="'small'" /></div>
 </div>
 <div class="WidgetRow">
-  <div><button nz-button>Показать</button></div>
+  <button nz-button>Показать</button>
   <div class="FlexRowGroup">
-    <div>
-      <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'">
-        <nz-option [nzValue]="'XML'" [nzLabel]="'XML'" />
-        <nz-option [nzValue]="'DXF'" [nzLabel]="'DXF'" />
-        <nz-option [nzLabel]="'Проектные скв.'" [nzValue]="'ProjectWells'" />
-        <nz-option [nzLabel]="'Фактические скв.'" [nzValue]="'FactWells'" />
-        <nz-option [nzLabel]="'Скв. сводно'" [nzValue]="'SummaryWells'" />
-        <nz-option [nzLabel]="'Скв. факт XYZ'" [nzValue]="'FactWellsXYZ'" />
-      </nz-select>
-    </div>
-    <div>
-      <button nz-button>Экспорт</button>
-    </div>
+    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'">
+      <nz-option [nzValue]="'XML'" [nzLabel]="'XML'" />
+      <nz-option [nzValue]="'DXF'" [nzLabel]="'DXF'" />
+      <nz-option [nzLabel]="'Проектные скв.'" [nzValue]="'ProjectWells'" />
+      <nz-option [nzLabel]="'Фактические скв.'" [nzValue]="'FactWells'" />
+      <nz-option [nzLabel]="'Скв. сводно'" [nzValue]="'SummaryWells'" />
+      <nz-option [nzLabel]="'Скв. факт XYZ'" [nzValue]="'FactWellsXYZ'" />
+    </nz-select>
+    <button nz-button>Экспорт</button>
   </div>
 </div>
 <div class="WidgetRow">
-  <div><nz-icon nzType="eye" nzTheme="outline" /></div>
-  <div>
-    <nz-select
-      [nzSize]="'small'"
-      [nzPlaceHolder]="'Выберите вариант'"
-      [ngModel]="this.Indication"
-      (ngModelChange)="this.ChangeIndication($event)"
-    >
-      <nz-option [nzLabel]="'Наведение'" [nzValue]="'Guidance'" />
-      <nz-option [nzLabel]="'Буровой станок'" [nzValue]="'DrillingRig'" />
-      <nz-option [nzLabel]="'Глубина бурения'" [nzValue]="'DrillingDepth'" />
-      <nz-option [nzLabel]="'Горизонтирование'" [nzValue]="'Levelling'" />
-      <nz-option [nzLabel]="'Угол бурения'" [nzValue]="'DrillingAngle'" />
-      <nz-option [nzLabel]="'Азимут бурения'" [nzValue]="'DrillingAzimuth'" />
-    </nz-select>
-  </div>
+  <nz-icon nzType="eye" nzTheme="outline" />
+  <nz-select
+    [nzSize]="'small'"
+    [nzPlaceHolder]="'Выберите вариант'"
+    [ngModel]="this.Indication"
+    (ngModelChange)="this.ChangeIndication($event)"
+  >
+    <nz-option [nzLabel]="'Наведение'" [nzValue]="'Guidance'" />
+    <nz-option [nzLabel]="'Буровой станок'" [nzValue]="'DrillingRig'" />
+    <nz-option [nzLabel]="'Глубина бурения'" [nzValue]="'DrillingDepth'" />
+    <nz-option [nzLabel]="'Горизонтирование'" [nzValue]="'Levelling'" />
+    <nz-option [nzLabel]="'Угол бурения'" [nzValue]="'DrillingAngle'" />
+    <nz-option [nzLabel]="'Азимут бурения'" [nzValue]="'DrillingAzimuth'" />
+  </nz-select>
+  <DrillingRigSVGIconComponent [Height]="'30px'" [Width]="'30px'" />
 </div>

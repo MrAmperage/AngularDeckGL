@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { GeoBoundingBox, TileLayer } from "@deck.gl/geo-layers";
 import { BitmapLayer } from "@deck.gl/layers";
-import BaseLayerComponent from "../BaseLayerComponent/BaseLayerComponent";
+import BaseLayerComponent from "../BaseLayerDirective/BaseLayerDirective";
 
 @Component({
   selector: "TileLayerComponent",
