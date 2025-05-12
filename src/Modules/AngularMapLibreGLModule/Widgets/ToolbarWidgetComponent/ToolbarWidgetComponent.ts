@@ -15,6 +15,7 @@ import { InternalWidgetOption } from "../../WidgetLoaders/BaseLoaderComponent/Ba
   templateUrl: "ToolbarWidgetComponent.html",
   styleUrls: ["./ToolbarWidgetComponent.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: "WidgetContainer WidgetContainerMargin" },
 })
 export default class ToolbarWidgetComponent extends BaseWidgetComponent {
   InternalWidgetOptions: InternalWidgetOption[] = [];
