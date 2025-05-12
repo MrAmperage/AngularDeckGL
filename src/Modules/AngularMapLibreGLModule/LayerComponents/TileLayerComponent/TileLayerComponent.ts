@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { GeoBoundingBox, TileLayer } from "@deck.gl/geo-layers";
 import { BitmapLayer } from "@deck.gl/layers";
 import BaseLayerComponent from "../BaseLayerDirective/BaseLayerDirective";
@@ -32,7 +32,7 @@ export default class TileLayerComponent extends BaseLayerComponent<TileLayer> {
           ],
         });
       },
-      pickable: true,
+      pickable: this.Pickable,
     });
   }
 }
