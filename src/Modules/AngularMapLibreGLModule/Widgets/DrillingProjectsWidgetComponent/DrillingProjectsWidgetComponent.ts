@@ -16,8 +16,6 @@ import { ClearOutline, EyeOutline } from "@ant-design/icons-angular/icons";
 import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
 import { DrillingProjectActualWellsIndication } from "./DrillingProjectsWidgetTypes";
-import { DrillingProjectsIndicationLegendMap } from "./DrillingProjectsIndicationLegendMap";
-import { IndicationColorLegendOption } from "../../Types/LibTypes";
 import { FormsModule } from "@angular/forms";
 import DrillingRigSVGIconComponent from "../../SVGIconComponents/DrillingRigSVGIconComponent/DrillingRigSVGIconComponent";
 
@@ -25,6 +23,7 @@ import DrillingRigSVGIconComponent from "../../SVGIconComponents/DrillingRigSVGI
   selector: "DrillingProjectsWidgetComponent",
   templateUrl: "DrillingProjectsWidgetComponent.html",
   styleUrls: ["./DrillingProjectsWidgetComponent.css"],
+  host: { class: "WidgetContainer WidgetHostContainerMargin" },
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     TitlePanelComponent,
@@ -51,12 +50,8 @@ export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent
   override Id: string = "DrillingProjects";
   //TODO Перенести индикацию в сервис
   Indication: DrillingProjectActualWellsIndication = "Guidance";
-  IndicationOption?: IndicationColorLegendOption =
-    DrillingProjectsIndicationLegendMap.get(this.Indication);
+
   ChangeIndication(Indication: DrillingProjectActualWellsIndication) {
-    this.IndicationOption = DrillingProjectsIndicationLegendMap.get(
-      this.Indication
-    );
     this.Indication = Indication;
   }
 
