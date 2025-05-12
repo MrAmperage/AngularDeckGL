@@ -11,6 +11,6 @@ export type IndicationColorLegendOption = {
 };
 /*Еденичный элемент легенды индикации */
 export type ColorLegendOption = {
-  Color?: Color;
+  Color: Color;
   Label: string;
 };

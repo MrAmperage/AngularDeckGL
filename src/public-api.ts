@@ -6,3 +6,4 @@ export { default as ToolbarWidgetComponent } from "./Modules/AngularMapLibreGLMo
 export { default as DrillingProjectLoaderComponent } from "./Modules/AngularMapLibreGLModule/WidgetLoaders/DrillingProjectLoaderComponent/DrillingProjectLoaderComponent";
 export { default as MapService } from "./Modules/AngularMapLibreGLModule/Services/MapService/MapService";
 export { default as CustomMapController } from "./Modules/AngularMapLibreGLModule/LayerComponents/DeckGLComponent/CustomMapController/CustomMapController";
+export { default as SimpleMeshLayerComponent } from "./Modules/AngularMapLibreGLModule/LayerComponents/SimpleMeshLayerComponent/SimpleMeshLayerComponent";
