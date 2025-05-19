@@ -1,13 +1,12 @@
-import { Component, Input } from "@angular/core";
+import { Directive, Input } from "@angular/core";
 import { GeoBoundingBox, TileLayer } from "@deck.gl/geo-layers";
 import { BitmapLayer } from "@deck.gl/layers";
-import BaseLayerComponent from "../BaseLayerDirective/BaseLayerDirective";
+import BaseLayerDirective from "../BaseLayerDirective/BaseLayerDirective";
 
-@Component({
-  selector: "TileLayerComponent",
-  templateUrl: "TileLayerComponent.html",
+@Directive({
+  selector: "TileLayerDirective",
 })
-export default class TileLayerComponent extends BaseLayerComponent<TileLayer> {
+export default class TileLayerDirective extends BaseLayerDirective<TileLayer> {
   @Input()
   TileSize: number = 256;
   @Input({ required: true })

@@ -1,14 +1,13 @@
-import { Component, Input } from "@angular/core";
+import { Directive, Input } from "@angular/core";
 import { TerrainLayer } from "@deck.gl/geo-layers";
-import { ElevationDecoder } from "./TerrainLayerComponentTypes";
+import { ElevationDecoder } from "./TerrainLayerDirectiveTypes";
 import { RefinementStrategy } from "@deck.gl/geo-layers/dist/tileset-2d";
-import BaseLayerComponent from "../BaseLayerDirective/BaseLayerDirective";
+import BaseLayerDirective from "../BaseLayerDirective/BaseLayerDirective";
 
-@Component({
-  selector: "TerrainLayerComponent",
-  templateUrl: "TerrainLayerComponent.html",
+@Directive({
+  selector: "TerrainLayerDirective",
 })
-export default class TerrainLayerComponent extends BaseLayerComponent<TerrainLayer> {
+export default class TerrainLayerDirective extends BaseLayerDirective<TerrainLayer> {
   @Input() ElevationDecoder: ElevationDecoder = {
     rScaler: 6553.6,
     gScaler: 25.6,

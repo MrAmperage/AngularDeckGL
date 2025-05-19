@@ -4,9 +4,9 @@ import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
 
 /*Базовая родительская директива для слоев карты */
 @Directive({
-  selector: "BaseLayerComponent",
+  selector: "BaseLayerDirective",
 })
-export default abstract class BaseLayerComponent<LayerClass extends Layer>
+export default abstract class BaseLayerDirective<LayerClass extends Layer>
   implements OnInit
 {
   constructor(protected DeckGLComponent: DeckGLComponent) {}
