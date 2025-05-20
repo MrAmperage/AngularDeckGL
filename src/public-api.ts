@@ -1,7 +1,7 @@
 /*Ядро */
 export { default as DeckGLComponent } from "./Modules/AngularMapLibreGLModule/LayerComponents/DeckGLComponent/DeckGLComponent";
 /*Слои */
-export { default as TileLayerDirective } from "./Modules/AngularMapLibreGLModule/LayerComponents/TileLayerComponent/TileLayerComponent";
+export { default as TileLayerDirective } from "./Modules/AngularMapLibreGLModule/LayerComponents/TileLayerDirective/TileLayerDirective";
 export { default as TerrainLayerDirective } from "./Modules/AngularMapLibreGLModule/LayerComponents/TerrainLayerDirective/TerrainLayerDirective";
 export { default as SimpleMeshLayerDirective } from "./Modules/AngularMapLibreGLModule/LayerComponents/SimpleMeshLayerDirective/SimpleMeshLayerDirective";
 /*Виджеты */
