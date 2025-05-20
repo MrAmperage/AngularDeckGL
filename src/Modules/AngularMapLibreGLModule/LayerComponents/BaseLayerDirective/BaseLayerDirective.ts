@@ -1,5 +1,5 @@
 import { Directive, Input, OnInit } from "@angular/core";
-import { Layer } from "@deck.gl/core";
+import { Layer, LayerExtension } from "@deck.gl/core";
 import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
 
 /*Базовая родительская директива для слоев карты */
@@ -20,6 +20,10 @@ export default abstract class BaseLayerDirective<LayerClass extends Layer>
   abstract PrepareLayer(): void;
   InitLayer() {
     this.DeckGLComponent.AddLayers([this.Layer]);
+  }
+  AddExtensions(Extensions: LayerExtension[]) {
+    this.Layer.props.extensions =
+      this.Layer.props.extensions.concat(Extensions);
   }
   RemoveLayer() {}
   ngOnInit(): void {
