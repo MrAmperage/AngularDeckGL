@@ -1,8 +1,6 @@
 import { Directive, OnInit } from "@angular/core";
 import { Layer, LayerExtension } from "@deck.gl/core";
-import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import BaseLayerDirective from "../../LayerComponents/BaseLayerDirective/BaseLayerDirective";
-import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
 /*Базовый абстрактный класс для  расширений слоев */
 @Directive({ selector: "BaseExtensionDirective" })
 export default abstract class BaseExtensionDirective<
@@ -14,7 +12,7 @@ export default abstract class BaseExtensionDirective<
 
   abstract PrepareExtension(): void;
   InitExtension() {
-    this.DeckGLLayer.AddExtensions([this.Extension]);
+    this.DeckGLLayer.AddExtension(this.Extension);
   }
 
   ngOnInit(): void {

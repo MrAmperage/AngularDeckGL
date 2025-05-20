@@ -11,6 +11,7 @@ export default abstract class BaseLayerDirective<LayerClass extends Layer>
 {
   constructor(protected DeckGLComponent: DeckGLComponent) {}
   protected Layer!: LayerClass;
+
   /*Отслеживать ли эвенты кликов на карте */
   @Input()
   Pickable: boolean = false;
@@ -19,11 +20,15 @@ export default abstract class BaseLayerDirective<LayerClass extends Layer>
   Id!: string;
   abstract PrepareLayer(): void;
   InitLayer() {
-    this.DeckGLComponent.AddLayers([this.Layer]);
+    this.DeckGLComponent.AddLayer(this.Layer);
   }
-  AddExtensions(Extensions: LayerExtension[]) {
-    this.Layer.props.extensions =
-      this.Layer.props.extensions.concat(Extensions);
+  AddExtension(Extension: LayerExtension) {
+    const OldExtensions = this.Layer.props.extensions;
+    this.Layer = this.Layer.clone({
+      ...this.Layer.props,
+      extensions: OldExtensions.concat(Extension),
+    });
+    this.DeckGLComponent.UpdateLayer(this.Layer);
   }
   RemoveLayer() {}
   ngOnInit(): void {

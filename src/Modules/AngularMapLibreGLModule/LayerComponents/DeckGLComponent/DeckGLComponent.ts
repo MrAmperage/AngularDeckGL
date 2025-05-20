@@ -39,11 +39,20 @@ export default class DeckGLComponent implements OnInit {
     this.DeckGL.setProps({ widgets: OldWigets.concat(Widgets) });
   }
   /*Добавление слоев в DeckGL*/
-  AddLayers(Layers: Layer[]) {
+  AddLayer(Layer: Layer) {
     const OldLayers = this.DeckGL.props.layers;
-    this.DeckGL.setProps({ layers: OldLayers.concat(Layers) });
+    this.DeckGL.setProps({ layers: OldLayers.concat(Layer) });
   }
-
+  UpdateLayer(UpdateLayer: Layer) {
+    let Layers = this.DeckGL.props.layers;
+    const UpdateLayerIndex = Layers.findIndex((LayerObject) => {
+      return LayerObject instanceof Layer && LayerObject.id == UpdateLayer.id;
+    });
+    if (UpdateLayerIndex !== -1) {
+      Layers[UpdateLayerIndex] = UpdateLayer;
+    }
+    this.DeckGL.setProps({ layers: Layers });
+  }
   DeckGLInit() {
     this.DeckGL = new Deck({
       canvas: this.Canvas.nativeElement,
