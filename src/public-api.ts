@@ -1,6 +1,6 @@
 /*Ядро */
 export { default as DeckGLComponent } from "./Modules/AngularMapLibreGLModule/LayerComponents/DeckGLComponent/DeckGLComponent";
-/*Слои */
+/*Оболочки слоев */
 export { default as TileLayerDirective } from "./Modules/AngularMapLibreGLModule/LayerComponents/TileLayerDirective/TileLayerDirective";
 export { default as TerrainLayerDirective } from "./Modules/AngularMapLibreGLModule/LayerComponents/TerrainLayerDirective/TerrainLayerDirective";
 export { default as SimpleMeshLayerDirective } from "./Modules/AngularMapLibreGLModule/LayerComponents/SimpleMeshLayerDirective/SimpleMeshLayerDirective";
@@ -15,3 +15,5 @@ export { default as MapService } from "./Modules/AngularMapLibreGLModule/Service
 export { default as CustomMapController } from "./Modules/AngularMapLibreGLModule/LayerComponents/DeckGLComponent/CustomMapController/CustomMapController";
 /*Расширения */
 export { default as TerrainMeshExtension } from "./Modules/AngularMapLibreGLModule/Extensions/TerrainMeshExtension/TerrainMeshExtension";
+/*Оболочки расширений */
+export { default as TerrainMeshExtensionDirective } from "./Modules/AngularMapLibreGLModule/Extensions/TerrainMeshExtensionDirective/TerrainMeshExtensionDirective";
