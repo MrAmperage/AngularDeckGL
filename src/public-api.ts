@@ -13,3 +13,5 @@ export { default as DrillingProjectLoaderComponent } from "./Modules/AngularMapL
 export { default as MapService } from "./Modules/AngularMapLibreGLModule/Services/MapService/MapService";
 /*Контролеры */
 export { default as CustomMapController } from "./Modules/AngularMapLibreGLModule/LayerComponents/DeckGLComponent/CustomMapController/CustomMapController";
+/*Расширения */
+export { default as TerrainMeshExtension } from "./Modules/AngularMapLibreGLModule/Extensions/TerrainMeshExtension/TerrainMeshExtension";
