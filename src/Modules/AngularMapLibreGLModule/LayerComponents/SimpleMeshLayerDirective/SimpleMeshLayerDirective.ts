@@ -2,11 +2,21 @@ import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
 import BaseLayerComponent from "../BaseLayerDirective/BaseLayerDirective";
 import { Directive, Input } from "@angular/core";
 import { OBJLoader } from "@loaders.gl/obj";
+import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes";
+
 /*Слой для отображения статичных моделей */
 @Directive({
   selector: "SimpleMeshLayerDirective",
 })
 export default class SimpleMeshLayerDirective extends BaseLayerComponent<SimpleMeshLayer> {
+  @Input()
+  GetPosition = (MapModel: MapModelOptions) => {
+    return MapModel.Position;
+  };
+  @Input()
+  GetColor = (MapModel: MapModelOptions) => {
+    return MapModel.Color;
+  };
   @Input()
   SizeScale: number = 1;
   @Input()
@@ -21,6 +31,8 @@ export default class SimpleMeshLayerDirective extends BaseLayerComponent<SimpleM
       sizeScale: this.SizeScale,
       mesh: this.Mesh,
       data: this.Data,
+      getColor: this.GetColor,
+      getPosition: this.GetPosition,
     });
   }
 }

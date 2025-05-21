@@ -1,7 +1,7 @@
 /*Общие типы для виджетов */
 
 /*Цвет */
-export type Color = `#${string}`;
+export type HexColor = `#${string}`;
 
 /*Опции для отображения легенды индикаций */
 export type IndicationColorLegendOption = {
@@ -11,6 +11,8 @@ export type IndicationColorLegendOption = {
 };
 /*Еденичный элемент легенды индикации */
 export type ColorLegendOption = {
-  Color: Color;
+  Color: HexColor;
   Label: string;
 };
+
+export type Coordinates = [number, number, number];

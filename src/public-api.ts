@@ -17,3 +17,6 @@ export { default as CustomMapController } from "./Modules/AngularMapLibreGLModul
 export { default as TerrainMeshExtension } from "./Modules/AngularMapLibreGLModule/Extensions/TerrainMeshExtension/TerrainMeshExtension";
 /*Оболочки расширений */
 export { default as TerrainMeshExtensionDirective } from "./Modules/AngularMapLibreGLModule/Extensions/TerrainMeshExtensionDirective/TerrainMeshExtensionDirective";
+
+/*Модели*/
+export { default as MapModel } from "./Modules/AngularMapLibreGLModule/AbstractionModels/MapModel/MapModel";
