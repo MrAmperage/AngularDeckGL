@@ -1,10 +1,18 @@
-import { MapController } from "@deck.gl/core";
+import { MapController, ControllerProps } from "@deck.gl/core";
 import { MjolnirEvent } from "mjolnir.js";
 
 /*Кастомный MapController для DeckGL */
 export default class CustomMapController extends MapController {
-  override handleEvent(Event: MjolnirEvent): boolean {
-    console.log(Event.type, Event);
-    return super.handleEvent(Event);
+  //TODO Типизировать
+  constructor(MapControllerProps: any) {
+    CustomMapController.DisableCanvasContextMenu(MapControllerProps);
+    super(MapControllerProps);
+  }
+  /*Отключает контекстное меню канваса */
+  static DisableCanvasContextMenu(MapControllerProps: any) {
+    (
+      MapControllerProps.eventManager.contextmenuInput
+        .element as HTMLCanvasElement
+    ).oncontextmenu = () => false;
   }
 }
