@@ -1,5 +1,4 @@
-import { MapController, ControllerProps } from "@deck.gl/core";
-import { MjolnirEvent } from "mjolnir.js";
+import { MapController } from "@deck.gl/core";
 
 /*Кастомный MapController для DeckGL */
 export default class CustomMapController extends MapController {
