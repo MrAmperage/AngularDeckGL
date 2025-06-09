@@ -34,7 +34,7 @@ export default class TerrainMeshExtension extends LayerExtension {
           context.deck.props.layers[TerrainLayerIndex] as TerrainLayer
         ).clone({
           onTileLoad(Tile) {
-            extension.TileHandler(Tile);
+            extension.TerrainLayerTileHandler(Tile);
           },
         });
         const NewLayers = context.deck.props.layers;
@@ -43,8 +43,8 @@ export default class TerrainMeshExtension extends LayerExtension {
       }
     }
   }
-
-  TileHandler = (Tile: Tile2DHeader) => {
+  /*Обработчик загрузки тайлов TerrainLayer*/
+  TerrainLayerTileHandler = (Tile: Tile2DHeader) => {
     console.log(444, Tile);
   };
 }
