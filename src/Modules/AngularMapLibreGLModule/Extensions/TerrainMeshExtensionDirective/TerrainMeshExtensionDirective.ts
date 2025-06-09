@@ -1,6 +1,6 @@
 import TerrainMeshExtension from "../TerrainMeshExtension/TerrainMeshExtension";
 import BaseExtensionDirective from "../BaseExtensionDirective/BaseExtensionDirective";
-import { Directive, Inject } from "@angular/core";
+import { Directive, Inject, Input } from "@angular/core";
 import SimpleMeshLayerDirective from "../../LayerComponents/SimpleMeshLayerDirective/SimpleMeshLayerDirective";
 @Directive({
   selector: "TerrainMeshExtensionDirective",
@@ -12,7 +12,11 @@ export default class TerrainMeshExtensionDirective extends BaseExtensionDirectiv
   ) {
     super(DeckGLLayer);
   }
+  @Input({ required: true })
+  TerrainLayerId!: string;
   override PrepareExtension(): void {
-    this.Extension = new TerrainMeshExtension();
+    this.Extension = new TerrainMeshExtension({
+      TerrainLayerId: this.TerrainLayerId,
+    });
   }
 }
