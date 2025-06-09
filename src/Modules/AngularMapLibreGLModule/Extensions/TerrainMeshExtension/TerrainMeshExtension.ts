@@ -2,6 +2,7 @@ import { Layer, LayerContext, LayerExtension } from "@deck.gl/core";
 import { TerrainMeshExtensionProps } from "./TerrainMeshExtensionTypes";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import { Tile2DHeader } from "@deck.gl/geo-layers/dist/tileset-2d";
+import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
 
 /*Расширение  для слоев отображения 3D моделей на Terrain */
 export default class TerrainMeshExtension extends LayerExtension {
@@ -11,14 +12,18 @@ export default class TerrainMeshExtension extends LayerExtension {
     this.TerrainLayerId = TerrainMeshExtensionProps.TerrainLayerId;
   }
   override initializeState(
-    this: Layer,
+    this: SimpleMeshLayer,
     context: LayerContext,
     extension: this
   ): void {
     extension.ReInitTerrainLayer(this, context, extension);
   }
   /*Расширяем TerrainLayer и заново его инициализируем*/
-  ReInitTerrainLayer(Layer: Layer, context: LayerContext, extension: this) {
+  ReInitTerrainLayer(
+    Layer: SimpleMeshLayer,
+    context: LayerContext,
+    extension: this
+  ) {
     if (context.deck !== undefined) {
       const TerrainLayerIndex = context.deck?.props.layers.findIndex(
         (Layer) => {
@@ -47,4 +52,10 @@ export default class TerrainMeshExtension extends LayerExtension {
   TerrainLayerTileHandler = (Tile: Tile2DHeader) => {
     console.log(444, Tile);
   };
+  /*Расширяем SimpleMeshLayer и заново его инициализируем*/
+  ReInitSimpleMeshLayer(
+    Layer: SimpleMeshLayer,
+    context: LayerContext,
+    extension: this
+  ) {}
 }
