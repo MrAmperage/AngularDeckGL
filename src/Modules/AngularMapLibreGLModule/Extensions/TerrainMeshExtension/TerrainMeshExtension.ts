@@ -51,9 +51,6 @@ export default class TerrainMeshExtension extends LayerExtension {
     console.log("TerrainLayerHandler", Tile);
   };
 
-  SimpleMeshDataLoadHandler = (Data: any, Context: any) => {
-    console.log("SimpleMeshLayerHandler", Data);
-  };
   /*Расширяем SimpleMeshLayer и заново его инициализируем*/
   ReInitSimpleMeshLayer(
     Layer: SimpleMeshLayer,
@@ -71,16 +68,12 @@ export default class TerrainMeshExtension extends LayerExtension {
       );
 
       if (SimpleMeshLayerIndex !== -1) {
-        const NewSimpleMeshLayerInstance = (
-          context.deck.props.layers[SimpleMeshLayerIndex] as SimpleMeshLayer
-        ).clone({
-          onDataLoad(data, context) {
-            extension.SimpleMeshDataLoadHandler(data, context);
-          },
-        });
-        const NewLayers = context.deck.props.layers;
-        NewLayers[SimpleMeshLayerIndex] = NewSimpleMeshLayerInstance;
-        context.deck.setProps({ layers: NewLayers });
+        const OldSimpleMeshLayer = context.deck.props.layers[
+          SimpleMeshLayerIndex
+        ] as SimpleMeshLayer;
+        const Data = OldSimpleMeshLayer.props.data as any[];
+
+        Data[0].Coordinates[2] = 200;
       }
     }
   }

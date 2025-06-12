@@ -3,10 +3,10 @@ import { MapModelOptions } from "./MapModelTypes";
 
 /*Класс для отображения моделей на карте */
 export default class MapModel {
-  Position: Coordinates;
+  Coordinates: Coordinates;
   Color: [number, number, number];
   constructor(ModelOptions: MapModelOptions) {
-    this.Position = ModelOptions.Position;
+    this.Coordinates = ModelOptions.Coordinates;
     this.Color = ModelOptions.Color;
   }
 }

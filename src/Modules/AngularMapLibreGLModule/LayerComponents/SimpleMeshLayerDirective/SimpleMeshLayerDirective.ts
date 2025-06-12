@@ -11,7 +11,7 @@ import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes"
 export default class SimpleMeshLayerDirective extends BaseLayerComponent<SimpleMeshLayer> {
   @Input()
   GetPosition = (MapModel: MapModelOptions) => {
-    return MapModel.Position;
+    return MapModel.Coordinates;
   };
   @Input()
   GetColor = (MapModel: MapModelOptions) => {
