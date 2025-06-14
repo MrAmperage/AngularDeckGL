@@ -14,8 +14,8 @@ export type ColorLegendOption = {
   Color: HexColor;
   Label: string;
 };
-/*Координаты*/
-export type Coordinates = [Latitude, Longitude, Height];
+/*Картографические координаты*/
+export type Coordinates = [Latitude, Longitude, Height?];
 /*Тип для возможных измерений*/
 export type Dimension = "Three" | "Two";
 /*Широта*/

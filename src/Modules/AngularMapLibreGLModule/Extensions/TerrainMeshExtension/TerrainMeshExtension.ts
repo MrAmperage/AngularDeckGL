@@ -3,6 +3,7 @@ import { TerrainMeshExtensionProps } from "./TerrainMeshExtensionTypes";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import { Tile2DHeader } from "@deck.gl/geo-layers/dist/tileset-2d";
 import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
+import { Coordinates } from "../../Types/LibTypes";
 
 /*Расширение  для слоев отображения 3D моделей на Terrain */
 export default class TerrainMeshExtension extends LayerExtension {
@@ -72,9 +73,32 @@ export default class TerrainMeshExtension extends LayerExtension {
           SimpleMeshLayerIndex
         ] as SimpleMeshLayer;
         const Data = OldSimpleMeshLayer.props.data as any[];
-
-        Data[0].Coordinates[2] = 200;
+        console.log(
+          "Elevation",
+          extension.GetElevation(Data[0].Coordinates, 14)
+        );
       }
     }
+  }
+  //TODO Дописать
+  GetElevation(Coordinates: Coordinates, Zoom: number) {
+    const TileSize = 256;
+    const TileCount = Math.pow(2, Zoom);
+    const xTile = Math.floor(((Coordinates[0] + 180) / 360) * TileCount);
+    const yTile = Math.floor(
+      ((1 -
+        Math.log(
+          Math.tan((Coordinates[1] * Math.PI) / 180) +
+            1 / Math.cos((Coordinates[1] * Math.PI) / 180)
+        ) /
+          Math.PI) /
+        2) *
+        TileCount
+    );
+
+    const LoadURL = `https://s3.amazonaws.com/elevation-tiles-prod/normal/${Zoom}/${xTile}/${yTile}.png`;
+    fetch(LoadURL).then((TileData) => {
+      console.log(TileData);
+    });
   }
 }
