@@ -1,0 +1,9 @@
+.Toolbar {
+  display: flex;
+}
+
+.WidgetColumn {
+  position: absolute;
+  left: 100%;
+  top: 5px;
+}
