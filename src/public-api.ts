@@ -20,3 +20,6 @@ export { default as TerrainMeshExtensionDirective } from "./Modules/AngularMapLi
 
 /*Модели*/
 export { default as MapModel } from "./Modules/AngularMapLibreGLModule/AbstractionModels/MapModel/MapModel";
+
+/*Лоадеры для слоев*/
+export { default as BaseLayerLoader } from "./Modules/AngularMapLibreGLModule/LayerLoaders/BaseLayerLoader/BaseLayerLoader";
