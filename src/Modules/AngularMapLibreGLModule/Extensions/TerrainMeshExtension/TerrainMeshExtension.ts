@@ -30,6 +30,7 @@ export default class TerrainMeshExtension extends LayerExtension {
       });
     extension.ReInitSimpleMeshLayer(this, context, extension);
     extension.ReInitTerrainLayer(this, context, extension);
+    super.initializeState(context, extension);
   }
   GetTerrainLayer(LayerContext: LayerContext) {
     if (LayerContext.deck !== undefined) {
