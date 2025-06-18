@@ -1,4 +1,4 @@
-/*Абстрактный базовый клас для других лоадеров слоев*/
+/*Абстрактный базовый класс для других лоадеров слоев*/
 export default abstract class BaseLayerLoader {
   abstract name: string;
   abstract id: string;
