@@ -55,9 +55,11 @@ export default class TerrainMeshExtension extends LayerExtension {
         if (TerrainLayer !== undefined) {
           CheckCountExternal == CheckCountExternal + 1;
           if (TerrainLayer.isLoaded) {
+            clearInterval(Interval);
             Resolve(CheckCountExternal);
           }
         } else {
+          clearInterval(Interval);
           Reject("Не найден TerrainLayer");
         }
         TerrainLayer?.isLoaded;
