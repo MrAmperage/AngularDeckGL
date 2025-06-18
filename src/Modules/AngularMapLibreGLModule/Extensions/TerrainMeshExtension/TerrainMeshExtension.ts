@@ -17,8 +17,58 @@ export default class TerrainMeshExtension extends LayerExtension {
     context: LayerContext,
     extension: this
   ): void {
+    extension
+      .OnLoadTerrainLayer(5, 1, context)
+      .then((Count) => {
+        console.log(
+          `Террайн загружен за ${Count} попыток`,
+          extension.GetTerrainLayer(context)?.isLoaded
+        );
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
     extension.ReInitSimpleMeshLayer(this, context, extension);
     extension.ReInitTerrainLayer(this, context, extension);
+  }
+  GetTerrainLayer(LayerContext: LayerContext) {
+    if (LayerContext.deck !== undefined) {
+      return LayerContext.deck.props.layers.find((Layer) => {
+        return (
+          Layer instanceof TerrainLayer && Layer.id === this.TerrainLayerId
+        );
+      }) as undefined | TerrainLayer;
+    } else {
+      return undefined;
+    }
+  }
+  OnLoadTerrainLayer(
+    CheckCount: number,
+    SecondsInterval: number,
+    LayerContext: LayerContext
+  ) {
+    let CheckCountExternal = 1;
+    const TerrainLayer = this.GetTerrainLayer(LayerContext);
+    let Interval: NodeJS.Timeout;
+    return new Promise<number>((Resolve, Reject) => {
+      const CheckLoadTileLayer = () => {
+        if (TerrainLayer !== undefined) {
+          CheckCountExternal == CheckCountExternal + 1;
+          if (TerrainLayer.isLoaded) {
+            Resolve(CheckCountExternal);
+          }
+        } else {
+          Reject("Не найден TerrainLayer");
+        }
+        TerrainLayer?.isLoaded;
+
+        if (CheckCountExternal === CheckCount) {
+          clearInterval(Interval);
+          Reject("Загрузка слоя не произошла");
+        }
+      };
+      Interval = setInterval(CheckLoadTileLayer, SecondsInterval * 1000);
+    });
   }
   /*Расширяем TerrainLayer и заново его инициализируем*/
   ReInitTerrainLayer(
