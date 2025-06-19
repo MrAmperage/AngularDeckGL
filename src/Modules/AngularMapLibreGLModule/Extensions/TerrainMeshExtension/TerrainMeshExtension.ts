@@ -19,11 +19,8 @@ export default class TerrainMeshExtension extends LayerExtension {
   ): void {
     extension
       .OnLoadTerrainLayer(5, 1, context)
-      .then((Count) => {
-        console.log(
-          `Террайн загружен за ${Count} попыток`,
-          extension.GetTerrainLayer(context)?.isLoaded
-        );
+      .then((TerrainLayer) => {
+        console.log(TerrainLayer);
       })
       .catch((Error) => {
         console.log(Error);
@@ -51,13 +48,13 @@ export default class TerrainMeshExtension extends LayerExtension {
     let CheckCountExternal = 1;
     const TerrainLayer = this.GetTerrainLayer(LayerContext);
     let Interval: NodeJS.Timeout;
-    return new Promise<number>((Resolve, Reject) => {
+    return new Promise<TerrainLayer>((Resolve, Reject) => {
       const CheckLoadTileLayer = () => {
         if (TerrainLayer !== undefined) {
           CheckCountExternal == CheckCountExternal + 1;
           if (TerrainLayer.isLoaded) {
             clearInterval(Interval);
-            Resolve(CheckCountExternal);
+            Resolve(TerrainLayer);
           }
         } else {
           clearInterval(Interval);
