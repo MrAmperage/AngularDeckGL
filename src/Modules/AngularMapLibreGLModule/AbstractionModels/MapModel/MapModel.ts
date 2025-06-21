@@ -6,7 +6,7 @@ export default class MapModel {
   /*Дочерние модели*/
   Childrens: MapModel[] = [];
   Dimension: Dimension;
-  Coordinates: Coordinates;
+  Coordinates: Required<Coordinates>;
   Color: [number, number, number];
   constructor(ModelOptions: MapModelOptions, Dimension: Dimension) {
     this.Coordinates = ModelOptions.Coordinates;

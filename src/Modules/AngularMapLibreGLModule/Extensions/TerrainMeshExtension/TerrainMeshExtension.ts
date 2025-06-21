@@ -42,7 +42,7 @@ export default class TerrainMeshExtension extends LayerExtension {
       return undefined;
     }
   }
-  GetElevation(TerrainLayer: TerrainLayer, Coordinates: Coordinates) {
+  GetElevation(TerrainLayer: TerrainLayer, Coordinates: Required<Coordinates>) {
     const subLayer = TerrainLayer.getSubLayers()[0];
     let Height = 0;
     //@ts-ignore
@@ -55,48 +55,35 @@ export default class TerrainMeshExtension extends LayerExtension {
       const MinY = bounds[0][1];
       const MaxX = bounds[1][0];
       const MaxY = bounds[1][1];
-
       if (
         Coordinates[1] < MinX ||
         Coordinates[1] > MaxX ||
         Coordinates[0] < MinY ||
         Coordinates[0] > MaxY
       ) {
-        const positions = mesh.attributes.POSITION.value;
-        const vertexCount = positions.length / 3;
-        const GridSize = Math.round(Math.sqrt(vertexCount));
-
-        const u = (Coordinates[1] - MinX) / (MaxX - MinX);
-        const v = (MaxY - Coordinates[0]) / (MaxY - MinY);
-
-        const x = u * (GridSize - 1);
-        const y = v * (GridSize - 1);
-        const i = Math.floor(x);
-        const j = Math.floor(y);
-        const dx = x - i;
-        const dy = y - j;
-
-        const z00 = positions[this.GetPositionIndex(i, j, GridSize) * 3 + 2];
-        const z10 =
-          positions[this.GetPositionIndex(i + 1, j, GridSize) * 3 + 2];
-        const z01 =
-          positions[this.GetPositionIndex(i, j + 1, GridSize) * 3 + 2];
-        const z11 =
-          positions[this.GetPositionIndex(i + 1, j + 1, GridSize) * 3 + 2];
-
-        const z0 = z00 * (1 - dx) + z10 * dx;
-        const z1 = z01 * (1 - dx) + z11 * dx;
-
-        Height = z0 * (1 - dy) + z1 * dy;
+        const Positions = mesh.attributes.POSITION.value;
+        const VertexCount = Positions.length / 3;
+        const GridSize = Math.round(Math.sqrt(VertexCount));
+        const U = (Coordinates[1] - MinX) / (MaxX - MinX);
+        const V = (MaxY - Coordinates[0]) / (MaxY - MinY);
+        const X = U * (GridSize - 1);
+        const Y = V * (GridSize - 1);
+        const I = Math.floor(X);
+        const J = Math.floor(Y);
+        Height =
+          Positions[this.GetPositionIndex(I, J, GridSize) * 3 + 2] -
+          80 +
+          Coordinates[2];
         return Height !== 0;
       } else {
         return false;
       }
     });
+    console.log(Height);
     return Height;
   }
 
-  GetPositionIndex(IndexI: number, IndexJ: number, GridSize: number) {
+  private GetPositionIndex(IndexI: number, IndexJ: number, GridSize: number) {
     return (
       Math.min(Math.max(IndexI, 0), GridSize - 1) +
       Math.min(Math.max(IndexJ, 0), GridSize - 1) * GridSize
