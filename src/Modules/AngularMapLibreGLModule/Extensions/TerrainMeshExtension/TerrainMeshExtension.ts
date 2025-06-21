@@ -1,8 +1,11 @@
-import { LayerContext, LayerExtension } from "@deck.gl/core";
+import {
+  Layer,
+  LayerContext,
+  LayerExtension,
+  UpdateParameters,
+} from "@deck.gl/core";
 import { TerrainMeshExtensionProps } from "./TerrainMeshExtensionTypes";
 import { TerrainLayer } from "@deck.gl/geo-layers";
-import { Tile2DHeader } from "@deck.gl/geo-layers/dist/tileset-2d";
-import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
 import { Coordinates } from "../../Types/LibTypes";
 
 /*Расширение  для слоев отображения 3D моделей на Terrain */
@@ -12,23 +15,22 @@ export default class TerrainMeshExtension extends LayerExtension {
     super();
     this.TerrainLayerId = TerrainMeshExtensionProps.TerrainLayerId;
   }
-  override initializeState(
-    this: SimpleMeshLayer,
-    context: LayerContext,
+  override updateState(
+    this: Layer,
+    params: UpdateParameters<Layer>,
     extension: this
   ): void {
-    extension
-      .OnLoadTerrainLayer(5, 1, context)
-      .then((TerrainLayer) => {
-        console.log(TerrainLayer);
-      })
-      .catch((Error) => {
-        console.log(Error);
-      });
-    extension.ReInitSimpleMeshLayer(this, context, extension);
-    extension.ReInitTerrainLayer(this, context, extension);
-    super.initializeState(context, extension);
+    extension.OnLoadTerrainLayer(5, 1, this.context).then((TerrainLayer) => {
+      console.log(
+        extension.GetElevation(
+          TerrainLayer,
+          [87.15609686851167, 54.22993514648337]
+        )
+      );
+    });
+    super.updateState(params, extension);
   }
+
   GetTerrainLayer(LayerContext: LayerContext) {
     if (LayerContext.deck !== undefined) {
       return LayerContext.deck.props.layers.find((Layer) => {
@@ -39,6 +41,66 @@ export default class TerrainMeshExtension extends LayerExtension {
     } else {
       return undefined;
     }
+  }
+  GetElevation(TerrainLayer: TerrainLayer, Coordinates: Coordinates) {
+    const subLayer = TerrainLayer.getSubLayers()[0];
+    let Height = 0;
+    //@ts-ignore
+    const Tiles: any[] = subLayer.state["tileset"]["_tiles"];
+    Tiles.some((Tile) => {
+      const bounds = Tile["boundingBox"];
+      const mesh = Tile["content"][0];
+
+      const MinX = bounds[0][0];
+      const MinY = bounds[0][1];
+      const MaxX = bounds[1][0];
+      const MaxY = bounds[1][1];
+
+      if (
+        Coordinates[1] < MinX ||
+        Coordinates[1] > MaxX ||
+        Coordinates[0] < MinY ||
+        Coordinates[0] > MaxY
+      ) {
+        const positions = mesh.attributes.POSITION.value;
+        const vertexCount = positions.length / 3;
+        const GridSize = Math.round(Math.sqrt(vertexCount));
+
+        const u = (Coordinates[1] - MinX) / (MaxX - MinX);
+        const v = (MaxY - Coordinates[0]) / (MaxY - MinY);
+
+        const x = u * (GridSize - 1);
+        const y = v * (GridSize - 1);
+        const i = Math.floor(x);
+        const j = Math.floor(y);
+        const dx = x - i;
+        const dy = y - j;
+
+        const z00 = positions[this.GetPositionIndex(i, j, GridSize) * 3 + 2];
+        const z10 =
+          positions[this.GetPositionIndex(i + 1, j, GridSize) * 3 + 2];
+        const z01 =
+          positions[this.GetPositionIndex(i, j + 1, GridSize) * 3 + 2];
+        const z11 =
+          positions[this.GetPositionIndex(i + 1, j + 1, GridSize) * 3 + 2];
+
+        const z0 = z00 * (1 - dx) + z10 * dx;
+        const z1 = z01 * (1 - dx) + z11 * dx;
+
+        Height = z0 * (1 - dy) + z1 * dy;
+        return Height !== 0;
+      } else {
+        return false;
+      }
+    });
+    return Height;
+  }
+
+  GetPositionIndex(IndexI: number, IndexJ: number, GridSize: number) {
+    return (
+      Math.min(Math.max(IndexI, 0), GridSize - 1) +
+      Math.min(Math.max(IndexJ, 0), GridSize - 1) * GridSize
+    );
   }
   OnLoadTerrainLayer(
     CheckCount: number,
@@ -68,87 +130,6 @@ export default class TerrainMeshExtension extends LayerExtension {
         }
       };
       Interval = setInterval(CheckLoadTileLayer, SecondsInterval * 1000);
-    });
-  }
-  /*Расширяем TerrainLayer и заново его инициализируем*/
-  ReInitTerrainLayer(
-    Layer: SimpleMeshLayer,
-    context: LayerContext,
-    extension: this
-  ) {
-    if (context.deck !== undefined) {
-      const TerrainLayerIndex = context.deck.props.layers.findIndex((Layer) => {
-        return (
-          Layer instanceof TerrainLayer && Layer.id === extension.TerrainLayerId
-        );
-      });
-
-      if (TerrainLayerIndex !== -1) {
-        const NewTerrainLayerInstance = (
-          context.deck.props.layers[TerrainLayerIndex] as TerrainLayer
-        ).clone({
-          onTileLoad(Tile) {
-            extension.TerrainLayerTileHandler(Tile);
-          },
-        });
-        const NewLayers = context.deck.props.layers;
-        NewLayers[TerrainLayerIndex] = NewTerrainLayerInstance;
-        context.deck.setProps({ layers: NewLayers });
-      }
-    }
-  }
-  /*Обработчик загрузки тайлов TerrainLayer*/
-  TerrainLayerTileHandler = (Tile: Tile2DHeader) => {
-    console.log("TerrainLayerHandler", Tile);
-  };
-
-  /*Расширяем SimpleMeshLayer и заново его инициализируем*/
-  ReInitSimpleMeshLayer(
-    Layer: SimpleMeshLayer,
-    context: LayerContext,
-    extension: this
-  ) {
-    if (context.deck !== undefined) {
-      const SimpleMeshLayerIndex = context.deck.props.layers.findIndex(
-        (LayerObject) => {
-          return (
-            LayerObject instanceof SimpleMeshLayer &&
-            LayerObject.id === Layer.id
-          );
-        }
-      );
-
-      if (SimpleMeshLayerIndex !== -1) {
-        const OldSimpleMeshLayer = context.deck.props.layers[
-          SimpleMeshLayerIndex
-        ] as SimpleMeshLayer;
-        const Data = OldSimpleMeshLayer.props.data as any[];
-        console.log(
-          "Elevation",
-          extension.GetElevation(Data[0].Coordinates, 14)
-        );
-      }
-    }
-  }
-  //TODO Дописать
-  GetElevation(Coordinates: Coordinates, Zoom: number) {
-    const TileSize = 256;
-    const TileCount = Math.pow(2, Zoom);
-    const xTile = Math.floor(((Coordinates[0] + 180) / 360) * TileCount);
-    const yTile = Math.floor(
-      ((1 -
-        Math.log(
-          Math.tan((Coordinates[1] * Math.PI) / 180) +
-            1 / Math.cos((Coordinates[1] * Math.PI) / 180)
-        ) /
-          Math.PI) /
-        2) *
-        TileCount
-    );
-
-    const LoadURL = `https://s3.amazonaws.com/elevation-tiles-prod/normal/${Zoom}/${xTile}/${yTile}.png`;
-    fetch(LoadURL).then((TileData) => {
-      console.log(TileData);
     });
   }
 }
