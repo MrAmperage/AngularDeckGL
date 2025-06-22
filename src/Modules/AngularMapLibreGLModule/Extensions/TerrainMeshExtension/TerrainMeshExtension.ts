@@ -1,12 +1,9 @@
-import {
-  Layer,
-  LayerContext,
-  LayerExtension,
-  UpdateParameters,
-} from "@deck.gl/core";
+import { LayerContext, LayerExtension } from "@deck.gl/core";
 import { TerrainMeshExtensionProps } from "./TerrainMeshExtensionTypes";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import { Coordinates } from "../../Types/LibTypes";
+import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
+import MapModel from "../../AbstractionModels/MapModel/MapModel";
 
 /*Расширение  для слоев отображения 3D моделей на Terrain */
 export default class TerrainMeshExtension extends LayerExtension {
@@ -15,20 +12,40 @@ export default class TerrainMeshExtension extends LayerExtension {
     super();
     this.TerrainLayerId = TerrainMeshExtensionProps.TerrainLayerId;
   }
-  override updateState(
-    this: Layer,
-    params: UpdateParameters<Layer>,
+  override initializeState(
+    this: SimpleMeshLayer,
+    context: LayerContext,
     extension: this
   ): void {
     extension.OnLoadTerrainLayer(5, 1, this.context).then((TerrainLayer) => {
-      console.log(
-        extension.GetElevation(
-          TerrainLayer,
-          [87.15609686851167, 54.22993514648337]
-        )
-      );
+      if (context.deck !== undefined) {
+        const SimpleMeshLayerIndex = context.deck.props.layers.findIndex(
+          (Layer) => {
+            return Layer instanceof SimpleMeshLayer && this.id === Layer.id;
+          }
+        );
+        if (SimpleMeshLayerIndex !== -1) {
+          const Layers = [...context.deck.props.layers];
+          const SimpleMeshLayerInstance = this.clone({
+            getPosition: (Model: MapModel) => {
+              Model.Coordinates[2] = extension.GetElevation(
+                TerrainLayer,
+                Model.Coordinates
+              );
+              return Model.Coordinates;
+            },
+            updateTriggers: {
+              getPosition: Math.random(),
+            },
+          }) as SimpleMeshLayer;
+
+          Layers[SimpleMeshLayerIndex] = SimpleMeshLayerInstance;
+          context.deck.setProps({ layers: Layers });
+        }
+      }
+
+      super.initializeState(context, extension);
     });
-    super.updateState(params, extension);
   }
 
   GetTerrainLayer(LayerContext: LayerContext) {
@@ -43,14 +60,13 @@ export default class TerrainMeshExtension extends LayerExtension {
     }
   }
   GetElevation(TerrainLayer: TerrainLayer, Coordinates: Required<Coordinates>) {
-    const subLayer = TerrainLayer.getSubLayers()[0];
+    const SubLayer = TerrainLayer.getSubLayers()[0];
     let Height = 0;
     //@ts-ignore
-    const Tiles: any[] = subLayer.state["tileset"]["_tiles"];
+    const Tiles: any[] = SubLayer.state["tileset"]["_tiles"];
     Tiles.some((Tile) => {
       const bounds = Tile["boundingBox"];
       const mesh = Tile["content"][0];
-
       const MinX = bounds[0][0];
       const MinY = bounds[0][1];
       const MaxX = bounds[1][0];
@@ -79,8 +95,7 @@ export default class TerrainMeshExtension extends LayerExtension {
         return false;
       }
     });
-    console.log(Height);
-    return Height;
+    return Height + Coordinates[2];
   }
 
   private GetPositionIndex(IndexI: number, IndexJ: number, GridSize: number) {
@@ -109,7 +124,6 @@ export default class TerrainMeshExtension extends LayerExtension {
           clearInterval(Interval);
           Reject("Не найден TerrainLayer");
         }
-        TerrainLayer?.isLoaded;
 
         if (CheckCountExternal === CheckCount) {
           clearInterval(Interval);
