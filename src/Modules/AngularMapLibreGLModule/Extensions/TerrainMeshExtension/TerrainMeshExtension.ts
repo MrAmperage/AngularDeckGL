@@ -4,46 +4,39 @@ import { TerrainLayer } from "@deck.gl/geo-layers";
 import { Coordinates } from "../../Types/LibTypes";
 import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
 import MapModel from "../../AbstractionModels/MapModel/MapModel";
+import { untracked } from "@angular/core";
 
 /*Расширение  для слоев отображения 3D моделей на Terrain */
 export default class TerrainMeshExtension extends LayerExtension {
-  Models: MapModel[] = [];
   TerrainLayerId: string;
   constructor(TerrainMeshExtensionProps: TerrainMeshExtensionProps) {
     super();
     this.TerrainLayerId = TerrainMeshExtensionProps.TerrainLayerId;
   }
-  override initializeState(
-    this: SimpleMeshLayer,
+  override async initializeState(
+    this: SimpleMeshLayer<MapModel>,
     context: LayerContext,
     extension: this
-  ): void {
-    extension.Models = this.props.data as MapModel[];
+  ) {
+    super.initializeState(context, extension);
     extension.UpdateLayerProps(this, {
-      getPosition: undefined,
-      updateTriggers: {
-        getPosition: Math.random(),
-      },
+      getPosition: () => undefined,
     });
-    extension.OnLoadTerrainLayer(5, 1, this.context).then((TerrainLayer) => {
-      extension.UpdateLayerProps(this, {
-        getPosition: (Model: MapModel) => {
-          Model.Coordinates[2] = extension.GetElevation(
-            TerrainLayer,
-            Model.Coordinates
-          );
-          return Model.Coordinates;
-        },
-        updateTriggers: {
-          getPosition: Math.random(),
-        },
-      });
-      super.initializeState(context, extension);
+    const TerrainLayer = await extension.OnLoadTerrainLayer(5, 1, this.context);
+    extension.UpdateLayerProps(this, {
+      getPosition: (Model: MapModel) => {
+        Model.Coordinates[2] = extension.GetElevation(
+          TerrainLayer,
+          Model.Coordinates
+        );
+        return Model.Coordinates;
+      },
+      data: [...(this.props.data as MapModel[])],
     });
   }
   UpdateLayerProps(LayerInstance: Layer, Props: any) {
     if (LayerInstance.context.deck !== undefined) {
-      const Layers = LayerInstance.context.deck.props.layers;
+      const Layers = [...LayerInstance.context.deck.props.layers];
       const LayerIndex = Layers.findIndex((LayerObject) => {
         return (
           LayerObject instanceof Layer && LayerObject.id === LayerInstance.id
