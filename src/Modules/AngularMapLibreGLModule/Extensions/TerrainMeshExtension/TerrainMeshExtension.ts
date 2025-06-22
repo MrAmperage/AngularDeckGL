@@ -1,4 +1,4 @@
-import { LayerContext, LayerExtension } from "@deck.gl/core";
+import { Layer, LayerContext, LayerExtension, LayerProps } from "@deck.gl/core";
 import { TerrainMeshExtensionProps } from "./TerrainMeshExtensionTypes";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import { Coordinates } from "../../Types/LibTypes";
@@ -7,6 +7,7 @@ import MapModel from "../../AbstractionModels/MapModel/MapModel";
 
 /*Расширение  для слоев отображения 3D моделей на Terrain */
 export default class TerrainMeshExtension extends LayerExtension {
+  Models: MapModel[] = [];
   TerrainLayerId: string;
   constructor(TerrainMeshExtensionProps: TerrainMeshExtensionProps) {
     super();
@@ -17,37 +18,44 @@ export default class TerrainMeshExtension extends LayerExtension {
     context: LayerContext,
     extension: this
   ): void {
+    extension.Models = this.props.data as MapModel[];
+    extension.UpdateLayerProps(this, {
+      getPosition: undefined,
+      updateTriggers: {
+        getPosition: Math.random(),
+      },
+    });
     extension.OnLoadTerrainLayer(5, 1, this.context).then((TerrainLayer) => {
-      if (context.deck !== undefined) {
-        const SimpleMeshLayerIndex = context.deck.props.layers.findIndex(
-          (Layer) => {
-            return Layer instanceof SimpleMeshLayer && this.id === Layer.id;
-          }
-        );
-        if (SimpleMeshLayerIndex !== -1) {
-          const Layers = [...context.deck.props.layers];
-          const SimpleMeshLayerInstance = this.clone({
-            getPosition: (Model: MapModel) => {
-              Model.Coordinates[2] = extension.GetElevation(
-                TerrainLayer,
-                Model.Coordinates
-              );
-              return Model.Coordinates;
-            },
-            updateTriggers: {
-              getPosition: Math.random(),
-            },
-          }) as SimpleMeshLayer;
-
-          Layers[SimpleMeshLayerIndex] = SimpleMeshLayerInstance;
-          context.deck.setProps({ layers: Layers });
-        }
-      }
-
+      extension.UpdateLayerProps(this, {
+        getPosition: (Model: MapModel) => {
+          Model.Coordinates[2] = extension.GetElevation(
+            TerrainLayer,
+            Model.Coordinates
+          );
+          return Model.Coordinates;
+        },
+        updateTriggers: {
+          getPosition: Math.random(),
+        },
+      });
       super.initializeState(context, extension);
     });
   }
+  UpdateLayerProps(LayerInstance: Layer, Props: any) {
+    if (LayerInstance.context.deck !== undefined) {
+      const Layers = LayerInstance.context.deck.props.layers;
+      const LayerIndex = Layers.findIndex((LayerObject) => {
+        return (
+          LayerObject instanceof Layer && LayerObject.id === LayerInstance.id
+        );
+      });
+      if (LayerIndex !== -1) {
+        Layers[LayerIndex] = LayerInstance.clone(Props);
 
+        LayerInstance.context.deck.setProps({ layers: Layers });
+      }
+    }
+  }
   GetTerrainLayer(LayerContext: LayerContext) {
     if (LayerContext.deck !== undefined) {
       return LayerContext.deck.props.layers.find((Layer) => {
