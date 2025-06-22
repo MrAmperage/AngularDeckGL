@@ -1,5 +1,5 @@
 import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
-import BaseLayerComponent from "../BaseLayerDirective/BaseLayerDirective";
+import BaseLayerDirective from "../BaseLayerDirective/BaseLayerDirective";
 import { Directive, Input } from "@angular/core";
 import { OBJLoader } from "@loaders.gl/obj";
 import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes";
@@ -8,7 +8,7 @@ import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes"
 @Directive({
   selector: "SimpleMeshLayerDirective",
 })
-export default class SimpleMeshLayerDirective extends BaseLayerComponent<SimpleMeshLayer> {
+export default class SimpleMeshLayerDirective extends BaseLayerDirective<SimpleMeshLayer> {
   @Input()
   GetPosition = (MapModel: MapModelOptions) => {
     return MapModel.Coordinates;
