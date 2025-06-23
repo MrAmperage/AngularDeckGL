@@ -19,7 +19,7 @@ export default class TerrainMeshExtension extends LayerExtension {
   ) {
     super.initializeState(context, extension);
     extension.UpdateLayerProps(this, {
-      getPosition: () => undefined,
+      visible: false,
     });
     const TerrainLayer = await extension.OnLoadTerrainLayer(5, 1, this.context);
     extension.UpdateLayerProps(this, {
@@ -30,21 +30,26 @@ export default class TerrainMeshExtension extends LayerExtension {
         );
         return Model.Coordinates;
       },
+      visible: true,
       data: [...(this.props.data as MapModel[])],
     });
   }
   UpdateLayerProps(LayerInstance: Layer, Props: any) {
     if (LayerInstance.context.deck !== undefined) {
-      const Layers = [...LayerInstance.context.deck.props.layers];
-      const LayerIndex = Layers.findIndex((LayerObject) => {
-        return (
-          LayerObject instanceof Layer && LayerObject.id === LayerInstance.id
-        );
-      });
+      const LayerIndex = LayerInstance.context.deck.props.layers.findIndex(
+        (LayerObject) => {
+          return (
+            LayerObject instanceof Layer && LayerObject.id === LayerInstance.id
+          );
+        }
+      );
       if (LayerIndex !== -1) {
-        Layers[LayerIndex] = LayerInstance.clone(Props);
+        LayerInstance.context.deck.props.layers[LayerIndex] =
+          LayerInstance.clone(Props);
 
-        LayerInstance.context.deck.setProps({ layers: Layers });
+        LayerInstance.context.deck.setProps({
+          layers: [...LayerInstance.context.deck.props.layers],
+        });
       }
     }
   }
