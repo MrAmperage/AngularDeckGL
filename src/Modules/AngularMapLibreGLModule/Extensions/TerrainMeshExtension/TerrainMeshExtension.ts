@@ -4,7 +4,6 @@ import { TerrainLayer } from "@deck.gl/geo-layers";
 import { Coordinates } from "../../Types/LibTypes";
 import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
 import MapModel from "../../AbstractionModels/MapModel/MapModel";
-import { untracked } from "@angular/core";
 
 /*Расширение  для слоев отображения 3D моделей на Terrain */
 export default class TerrainMeshExtension extends LayerExtension {
@@ -89,7 +88,7 @@ export default class TerrainMeshExtension extends LayerExtension {
         const J = Math.floor(Y);
         Height =
           Positions[this.GetPositionIndex(I, J, GridSize) * 3 + 2] -
-          80 +
+          70 +
           Coordinates[2];
         return Height !== 0;
       } else {
