@@ -21,7 +21,11 @@ export default class TerrainMeshExtension extends LayerExtension {
     extension.UpdateLayerProps(this, {
       visible: false,
     });
-    const TerrainLayer = await extension.OnLoadTerrainLayer(5, 1, this.context);
+    const TerrainLayer = await extension.OnLoadTerrainLayer(
+      5,
+      0.5,
+      this.context
+    );
     extension.UpdateLayerProps(this, {
       getPosition: (Model: MapModel) => {
         Model.Coordinates[2] = extension.GetElevation(
