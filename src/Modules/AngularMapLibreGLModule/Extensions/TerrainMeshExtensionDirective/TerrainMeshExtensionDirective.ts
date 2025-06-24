@@ -12,11 +12,8 @@ export default class TerrainMeshExtensionDirective extends BaseExtensionDirectiv
   ) {
     super(DeckGLLayer);
   }
-  @Input({ required: true })
-  TerrainLayerId!: string;
+
   override PrepareExtension(): void {
-    this.Extension = new TerrainMeshExtension({
-      TerrainLayerId: this.TerrainLayerId,
-    });
+    this.Extension = new TerrainMeshExtension();
   }
 }

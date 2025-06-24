@@ -1,5 +1,4 @@
 import { Layer, LayerContext, LayerExtension, LayerProps } from "@deck.gl/core";
-import { TerrainMeshExtensionProps } from "./TerrainMeshExtensionTypes";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import { Coordinates } from "../../Types/LibTypes";
 import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
@@ -7,10 +6,8 @@ import MapModel from "../../AbstractionModels/MapModel/MapModel";
 
 /*Расширение  для слоев отображения 3D моделей на Terrain */
 export default class TerrainMeshExtension extends LayerExtension {
-  TerrainLayerId: string;
-  constructor(TerrainMeshExtensionProps: TerrainMeshExtensionProps) {
+  constructor() {
     super();
-    this.TerrainLayerId = TerrainMeshExtensionProps.TerrainLayerId;
   }
   override async initializeState(
     this: SimpleMeshLayer<MapModel>,
@@ -56,9 +53,7 @@ export default class TerrainMeshExtension extends LayerExtension {
   GetTerrainLayer(LayerContext: LayerContext) {
     if (LayerContext.deck !== undefined) {
       return LayerContext.deck.props.layers.find((Layer) => {
-        return (
-          Layer instanceof TerrainLayer && Layer.id === this.TerrainLayerId
-        );
+        return Layer instanceof TerrainLayer;
       }) as undefined | TerrainLayer;
     } else {
       return undefined;
