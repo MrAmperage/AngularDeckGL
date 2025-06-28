@@ -4,10 +4,10 @@ import MapService from "../../Services/MapService/MapService";
 import ToolbarWidgetComponent from "../../Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
 
 @Component({
-  selector: "DrillingProjectLoaderComponent",
-  templateUrl: "DrillingProjectLoaderComponent.svg",
+  selector: "DrillingProjectsLoaderComponent",
+  templateUrl: "DrillingProjectsLoaderComponent.svg",
 })
-export default class DrillingProjectLoaderComponent extends BaseLoaderComponent {
+export default class DrillingProjectsLoaderComponent extends BaseLoaderComponent {
   constructor(
     MapService: MapService,
     ToolbarWidgetComponent: ToolbarWidgetComponent

@@ -17,13 +17,14 @@
   display: flex;
   flex-direction: column;
 }
+
+.MinimalGap {
+  gap: 10px;
+}
 .FlexRow {
   display: flex;
 }
-.FlexRowGroup {
-  display: flex;
-  gap: 10px;
-}
+
 .WidgetContainer {
   background-color: var(--BackgroundColor);
   pointer-events: visible;

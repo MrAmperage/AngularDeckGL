@@ -1,5 +1,5 @@
-<div class="WidgetRow FlexRowGroup">
-  <div class="FlexRowGroup">
+<div class="WidgetRow FlexRow MinimalGap">
+  <div class="FlexRow MinimalGap">
     <nz-icon nzType="step-backward" nzTheme="fill" />
     <nz-date-picker
       [nzSize]="'small'"
@@ -8,7 +8,7 @@
       [nzShowNow]="false"
     />
   </div>
-  <div class="FlexRowGroup">
+  <div class="FlexRow MinimalGap">
     <nz-icon nzType="step-forward" nzTheme="fill" />
     <nz-date-picker
       [nzSize]="'small'"
@@ -19,7 +19,7 @@
   </div>
 </div>
 <div class="WidgetRow" *ngIf="this.IsShowShiftOptions">
-  <div class="FlexRowGroup">
+  <div class="FlexRow MinimalGap">
     <nz-icon nzType="clock-circle" nzTheme="outline" />
     <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'">
       <nz-option [nzValue]="'CurrentShift'" [nzLabel]="'Текущая смена'" />
