@@ -16,11 +16,22 @@ export default class TerrainWidgetComponent extends BaseWidgetComponent {
   ) {
     super(DeckGLComponent, ElementRef, MapService);
   }
+  TerrainProps = {
+    id: "TerrainLayer",
+    texture: "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+    elevationData:
+      "https://s3.amazonaws.com/elevation-tiles-prod/normal/{z}/{x}/{y}.png",
+    elevationDecoder: {
+      rScaler: 2,
+      gScaler: 0,
+      bScaler: 0,
+      offset: 0,
+    },
+  };
   TerrainLayer!: TerrainLayer;
-  override Placement: WidgetPlacement = "fill";
 
   override PrepareInitWidget(): void {
-    this.TerrainLayer = new TerrainLayer({ id: "TerrainLayer" });
+    this.TerrainLayer = new TerrainLayer(this.TerrainProps);
     this.DeckGLComponent.AddLayers([this.TerrainLayer]);
   }
 

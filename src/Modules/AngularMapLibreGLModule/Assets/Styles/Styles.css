@@ -25,7 +25,7 @@
   display: flex;
 }
 
-.WidgetContainer {
+.WidgetContainer:not(:empty) {
   background-color: var(--BackgroundColor);
   pointer-events: visible;
   display: block;

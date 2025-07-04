@@ -9,6 +9,7 @@ export { default as SimpleMeshLayerDirective } from "./Modules/AngularMapLibreGL
 /*Виджеты */
 export { default as DrillingProjectsWidgetComponent } from "./Modules/AngularMapLibreGLModule/WidgetComponents/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent";
 export { default as ToolbarWidgetComponent } from "./Modules/AngularMapLibreGLModule/WidgetComponents/ToolbarWidgetComponent/ToolbarWidgetComponent";
+export { default as TerrainWidgetComponent } from "./Modules/AngularMapLibreGLModule/WidgetComponents/TerrainWidgetComponent/TerrainWidgetComponent";
 
 /*Лоадеры */
 export { default as DrillingProjectsLoaderComponent } from "./Modules/AngularMapLibreGLModule/WidgetLoaders/DrillingProjectsLoaderComponent/DrillingProjectsLoaderComponent";
