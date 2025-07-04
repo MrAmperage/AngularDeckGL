@@ -14,6 +14,7 @@ export { default as TerrainWidgetComponent } from "./Modules/AngularMapLibreGLMo
 /*Лоадеры */
 export { default as DrillingProjectsLoaderComponent } from "./Modules/AngularMapLibreGLModule/WidgetLoaders/DrillingProjectsLoaderComponent/DrillingProjectsLoaderComponent";
 export { default as TransportsLoaderComponent } from "./Modules/AngularMapLibreGLModule/WidgetLoaders/TransportsLoaderComponent/TransportsLoaderComponent";
+export { default as TerrainLoaderComponent } from "./Modules/AngularMapLibreGLModule/WidgetLoaders/TerrainLoaderComponent/TerrainLoaderComponent";
 
 /*Сервисы */
 export { default as MapService } from "./Modules/AngularMapLibreGLModule/Services/MapService/MapService";

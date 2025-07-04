@@ -1,12 +1,13 @@
-import { Directive, ElementRef, Inject } from "@angular/core";
+import { Component, Directive, ElementRef, Inject } from "@angular/core";
 import BaseWidgetComponent from "../BaseWidgetComponent/BaseWidgetComponent";
 import { WidgetPlacement } from "@deck.gl/core";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
 
-@Directive({
+@Component({
   selector: "TerrainWidgetComponent",
+  template: "",
 })
 export default class TerrainWidgetComponent extends BaseWidgetComponent {
   constructor(
@@ -16,6 +17,7 @@ export default class TerrainWidgetComponent extends BaseWidgetComponent {
   ) {
     super(DeckGLComponent, ElementRef, MapService);
   }
+  override Id: string = "Terrain";
   TerrainProps = {
     id: "TerrainLayer",
     texture: "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
