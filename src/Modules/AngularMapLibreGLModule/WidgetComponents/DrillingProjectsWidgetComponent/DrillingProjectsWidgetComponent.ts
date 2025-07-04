@@ -54,6 +54,4 @@ export default class DrillingProjectsWidgetComponent extends BaseWidgetComponent
   ChangeIndication(Indication: DrillingProjectActualWellsIndication) {
     this.Indication = Indication;
   }
-
-  override PrepareWidget(): void {}
 }

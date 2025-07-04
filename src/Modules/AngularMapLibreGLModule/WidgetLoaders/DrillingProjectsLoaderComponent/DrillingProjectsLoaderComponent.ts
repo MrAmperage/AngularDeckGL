@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import BaseLoaderComponent from "../BaseLoaderComponent/BaseLoaderComponent";
 import MapService from "../../Services/MapService/MapService";
-import ToolbarWidgetComponent from "../../Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
+import ToolbarWidgetComponent from "../../WidgetComponents/ToolbarWidgetComponent/ToolbarWidgetComponent";
 
 @Component({
   selector: "DrillingProjectsLoaderComponent",
@@ -17,7 +17,7 @@ export default class DrillingProjectsLoaderComponent extends BaseLoaderComponent
 
   override ClickOnLoader(): void {
     import(
-      "../../Widgets/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent"
+      "../../WidgetComponents/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent"
     ).then((Widget) => {
       super.ClickOnLoader();
 

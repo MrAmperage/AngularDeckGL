@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit } from "@angular/core";
+import { Directive, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
 import { Widget, WidgetPlacement } from "@deck.gl/core";
 import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
@@ -9,7 +9,7 @@ import { WidgetOption } from "../../Services/MapService/MapServiceTypes";
   selector: "BaseWidgetComponent",
   host: { class: "WidgetContainer" },
 })
-export default abstract class BaseWidgetComponent implements OnInit {
+export default abstract class BaseWidgetComponent implements OnInit, OnDestroy {
   constructor(
     protected DeckGLComponent: DeckGLComponent,
     protected HostElement: ElementRef,
@@ -24,7 +24,7 @@ export default abstract class BaseWidgetComponent implements OnInit {
   Id!: string;
   Widget: Widget;
   /*Подготовка виджета.Переопределить если потребуется */
-  PrepareWidget() {}
+  PrepareInitWidget() {}
   InitWidget() {
     this.WidgetOption = { Id: this.Id };
     const WidgetOption = this.MapService.GetWidgetOptionById(this.Id);
@@ -46,7 +46,12 @@ export default abstract class BaseWidgetComponent implements OnInit {
     };
   }
   ngOnInit(): void {
-    this.PrepareWidget();
+    this.PrepareInitWidget();
     this.InitWidget();
+  }
+  /*Удаление виджета.Переопределить если потребуется*/
+  PrepareRemoveWidget() {}
+  ngOnDestroy(): void {
+    this.PrepareRemoveWidget();
   }
 }

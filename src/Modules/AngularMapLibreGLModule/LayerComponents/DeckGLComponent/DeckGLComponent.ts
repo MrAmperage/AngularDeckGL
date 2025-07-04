@@ -38,10 +38,32 @@ export default class DeckGLComponent implements OnInit {
     const OldWigets = this.DeckGL.props.widgets;
     this.DeckGL.setProps({ widgets: OldWigets.concat(Widgets) });
   }
+  /*Удаление виджетов */
+  RemoveWidgets(Widgets: Widget[]) {
+    const NewWidgets = this.DeckGL.props.widgets.filter((Widget) => {
+      return !Widgets.some((WidgetObject) => {
+        return WidgetObject.id === Widget.id;
+      });
+    });
+
+    this.DeckGL.setProps({ widgets: NewWidgets });
+  }
   /*Добавление слоев в DeckGL*/
-  AddLayer(Layer: Layer) {
+  AddLayers(Layers: Layer[]) {
     const OldLayers = this.DeckGL.props.layers;
-    this.DeckGL.setProps({ layers: OldLayers.concat(Layer) });
+    this.DeckGL.setProps({ layers: OldLayers.concat(Layers) });
+  }
+  RemoveLayers(Layers: Layer[]) {
+    const NewLayers = this.DeckGL.props.layers.filter((OldLayer) => {
+      return (
+        OldLayer instanceof Layer &&
+        !Layers.some((LayerObject) => {
+          return LayerObject.id === OldLayer.id;
+        })
+      );
+    });
+
+    this.DeckGL.setProps({ layers: NewLayers });
   }
   UpdateLayer(UpdateLayer: Layer) {
     let Layers = this.DeckGL.props.layers;

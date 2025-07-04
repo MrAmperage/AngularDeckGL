@@ -1,6 +1,6 @@
 import { Directive, HostListener, Input, OnInit } from "@angular/core";
 import MapService from "../../Services/MapService/MapService";
-import ToolbarWidgetComponent from "../../Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
+import ToolbarWidgetComponent from "../../WidgetComponents/ToolbarWidgetComponent/ToolbarWidgetComponent";
 
 @Directive({
   selector: "BaseLoaderComponent",

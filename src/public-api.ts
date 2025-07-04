@@ -7,8 +7,8 @@ export { default as TerrainLayerDirective } from "./Modules/AngularMapLibreGLMod
 export { default as SimpleMeshLayerDirective } from "./Modules/AngularMapLibreGLModule/LayerComponents/SimpleMeshLayerDirective/SimpleMeshLayerDirective";
 
 /*Виджеты */
-export { default as DrillingProjectsWidgetComponent } from "./Modules/AngularMapLibreGLModule/Widgets/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent";
-export { default as ToolbarWidgetComponent } from "./Modules/AngularMapLibreGLModule/Widgets/ToolbarWidgetComponent/ToolbarWidgetComponent";
+export { default as DrillingProjectsWidgetComponent } from "./Modules/AngularMapLibreGLModule/WidgetComponents/DrillingProjectsWidgetComponent/DrillingProjectsWidgetComponent";
+export { default as ToolbarWidgetComponent } from "./Modules/AngularMapLibreGLModule/WidgetComponents/ToolbarWidgetComponent/ToolbarWidgetComponent";
 
 /*Лоадеры */
 export { default as DrillingProjectsLoaderComponent } from "./Modules/AngularMapLibreGLModule/WidgetLoaders/DrillingProjectsLoaderComponent/DrillingProjectsLoaderComponent";

@@ -7,7 +7,7 @@ import BaseLoaderComponent from "../BaseLoaderComponent/BaseLoaderComponent";
 export default class TransportsLoaderComponent extends BaseLoaderComponent {
   override ClickOnLoader(): void {
     import(
-      "../../Widgets/TransportsWidgetComponent/TransportsWidgetComponent"
+      "../../WidgetComponents/TransportsWidgetComponent/TransportsWidgetComponent"
     ).then((Widget) => {
       super.ClickOnLoader();
 

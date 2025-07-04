@@ -21,7 +21,7 @@ export default abstract class BaseLayerDirective<LayerClass extends Layer>
   Id!: string;
   abstract PrepareLayer(): void;
   InitLayer() {
-    this.DeckGLComponent.AddLayer(this.Layer);
+    this.DeckGLComponent.AddLayers([this.Layer]);
   }
   AddExtension(Extension: LayerExtension) {
     const OldExtensions = this.Layer.props.extensions;

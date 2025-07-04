@@ -39,5 +39,5 @@ export default class ToolbarWidgetComponent extends BaseWidgetComponent {
     }
   }
 
-  override PrepareWidget(): void {}
+  override PrepareInitWidget(): void {}
 }
