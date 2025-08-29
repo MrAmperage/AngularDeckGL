@@ -1,5 +1,5 @@
 {
-  "name": "angular-deck.gl",
+  "name": "@mr.amperage/angular-deck.gl",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^19.1.4",
@@ -16,6 +16,9 @@
   "sideEffects": false,
   "devDependencies": {
     "ng-packagr": "^19.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "ng-packagr -p ng-package.json"
