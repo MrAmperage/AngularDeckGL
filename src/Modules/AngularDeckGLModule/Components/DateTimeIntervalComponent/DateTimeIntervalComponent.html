@@ -1,0 +1,34 @@
+<div class="WidgetRow FlexRow MinimalGap">
+  <div class="FlexRow MinimalGap">
+    <nz-icon nzType="step-backward" nzTheme="fill" />
+    <nz-date-picker
+      [nzSize]="'small'"
+      [nzShowTime]="true"
+      [nzShowToday]="false"
+      [nzShowNow]="false"
+    />
+  </div>
+  <div class="FlexRow MinimalGap">
+    <nz-icon nzType="step-forward" nzTheme="fill" />
+    <nz-date-picker
+      [nzSize]="'small'"
+      [nzShowTime]="true"
+      [nzShowToday]="false"
+      [nzShowNow]="false"
+    />
+  </div>
+</div>
+<div class="WidgetRow" *ngIf="this.IsShowShiftOptions">
+  <div class="FlexRow MinimalGap">
+    <nz-icon nzType="clock-circle" nzTheme="outline" />
+    <nz-select [nzSize]="'small'" [nzPlaceHolder]="'Выберите вариант'">
+      <nz-option [nzValue]="'CurrentShift'" [nzLabel]="'Текущая смена'" />
+      <nz-option [nzValue]="'PreviousShift'" [nzLabel]="'Предыдущая смена'" />
+      <nz-option [nzValue]="'CurrentDay'" [nzLabel]="'Текущие сутки'" />
+      <nz-option [nzValue]="'PreviousDay'" [nzLabel]="'Предыдущие сутки'" />
+      <nz-option [nzValue]="'InTwoDays'" [nzLabel]="'За 2е суток'" />
+      <nz-option [nzValue]="'InThreeDays'" [nzLabel]="'За 3е суток'" />
+    </nz-select>
+  </div>
+  <div>В работе <nz-switch /></div>
+</div>

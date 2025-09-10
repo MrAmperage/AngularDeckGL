@@ -1,20 +1,19 @@
 {
   "$schema": "node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "dist/angular-deck.gl-map",
+  "dest": "dist/angular-deck.gl",
   "lib": {
     "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": [
     "@deck.gl/core",
     "@deck.gl/geo-layers",
-    "@deck.gl/mapbox",
     "@deck.gl/mesh-layers",
     "@loaders.gl/obj"
   ],
   "assets": [
     {
       "glob": "**/*",
-      "input": "./src/Modules/AngularMapLibreGLModule/Assets",
+      "input": "./src/Modules/AngularDeckGLModule/Assets",
       "output": "/assets/"
     }
   ]

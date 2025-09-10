@@ -1,0 +1,64 @@
+:root {
+  --BackgroundColor: #002140;
+  --TextColor: #ffffff;
+  --ErrorColor: #ff0000;
+}
+
+.FlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.FlexCenterVertical {
+  display: flex;
+  align-items: center;
+}
+.FlexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.MinimalGap {
+  gap: 10px;
+}
+.FlexRow {
+  display: flex;
+}
+
+.WidgetContainer:not(:empty) {
+  background-color: var(--BackgroundColor);
+  pointer-events: visible;
+  display: block;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+  color: var(--TextColor);
+  border-radius: 4px;
+}
+
+.WidgetContainerMargin {
+  margin: 5px 0px 0px 5px;
+}
+
+.Clicked {
+  cursor: pointer;
+}
+
+.WidgetRow {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 0px 10px;
+  white-space: nowrap;
+}
+
+.Error {
+  color: var(--ErrorColor);
+}
+
+.MapWidgetSwitchersGrid {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}

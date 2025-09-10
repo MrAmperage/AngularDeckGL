@@ -1,0 +1,25 @@
+<div class="WidgetRow">
+  <span>{{this.Title}}</span>
+  <div class="FlexRow MinimalGap">
+    <nz-icon
+      (click)="this.ChangeShowInternalContent(!this.IsShowInternalContent)"
+      nzType="up"
+      nzTheme="outline"
+      class="FlexCenter Clicked"
+      *ngIf="this.IsShowInternalContent &&this.IsShowInternalContentSwitchIcon"
+    /><nz-icon
+      nzType="down"
+      nzTheme="outline"
+      class="FlexCenter Clicked"
+      *ngIf="!this.IsShowInternalContent &&this.IsShowInternalContentSwitchIcon"
+      (click)="this.ChangeShowInternalContent(!this.IsShowInternalContent)"
+    />
+    <nz-icon
+      *ngIf="this.IsShowCloseIcon"
+      nzType="close-circle"
+      nzTheme="fill"
+      class="FlexCenter Error Clicked"
+    />
+  </div>
+</div>
+<ng-content *ngIf="this.IsShowInternalContent"></ng-content>
