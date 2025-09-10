@@ -1,6 +1,5 @@
-import { Component, Directive, ElementRef, Inject } from "@angular/core";
+import { Component, ElementRef, Inject } from "@angular/core";
 import BaseWidgetComponent from "../BaseWidgetComponent/BaseWidgetComponent";
-import { WidgetPlacement } from "@deck.gl/core";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import DeckGLComponent from "../../LayerComponents/DeckGLComponent/DeckGLComponent";
 import MapService from "../../Services/MapService/MapService";
