@@ -4,13 +4,12 @@
   "peerDependencies": {
     "@angular/common": "^19.1.4",
     "@angular/core": "^19.1.4",
-    "ng-zorro-antd": "^19.0.2"
+    "@deck.gl/core": "^9.1.14",
+    "@deck.gl/mesh-layers": "^9.1.14",
+    "ng-zorro-antd": "^19.0.2",
+    "@deck.gl/geo-layers": "^9.1.14"
   },
   "dependencies": {
-    "@deck.gl/core": "^9.1.14",
-    "@deck.gl/geo-layers": "^9.1.14",
-    "@deck.gl/mesh-layers": "^9.1.14",
-    "@loaders.gl/obj": "^4.3.4",
     "tslib": "^2.8.1"
   },
   "sideEffects": false,

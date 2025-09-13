@@ -1,7 +1,6 @@
 import { SimpleMeshLayer } from "@deck.gl/mesh-layers";
 import BaseLayerDirective from "../BaseLayerDirective/BaseLayerDirective";
 import { Directive, Input } from "@angular/core";
-import { OBJLoader } from "@loaders.gl/obj";
 import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes";
 
 /*Слой для отображения статичных моделей */
@@ -9,6 +8,8 @@ import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes"
   selector: "SimpleMeshLayerDirective",
 })
 export default class SimpleMeshLayerDirective extends BaseLayerDirective<SimpleMeshLayer> {
+  @Input()
+  Loaders: any[] = [];
   @Input()
   GetPosition = (MapModel: MapModelOptions) => {
     return MapModel.Coordinates;
@@ -27,7 +28,7 @@ export default class SimpleMeshLayerDirective extends BaseLayerDirective<SimpleM
     this.Layer = new SimpleMeshLayer({
       id: this.Id,
       pickable: this.Pickable,
-      loaders: [OBJLoader],
+      loaders: this.Loaders,
       sizeScale: this.SizeScale,
       mesh: this.Mesh,
       data: this.Data,

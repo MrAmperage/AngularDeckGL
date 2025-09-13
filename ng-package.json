@@ -4,17 +4,5 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
-  "allowedNonPeerDependencies": [
-    "@deck.gl/core",
-    "@deck.gl/geo-layers",
-    "@deck.gl/mesh-layers",
-    "@loaders.gl/obj"
-  ],
-  "assets": [
-    {
-      "glob": "**/*",
-      "input": "./src/Modules/AngularDeckGLModule/Assets",
-      "output": "/assets/"
-    }
-  ]
+  "allowedNonPeerDependencies": []
 }

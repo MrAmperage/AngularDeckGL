@@ -15,22 +15,5 @@ export default class TerrainLoaderComponent extends BaseLoaderComponent {
     super(MapService, ToolbarWidgetComponent);
   }
 
-  override ClickOnLoader(): void {
-    import(
-      "../../WidgetComponents/TerrainWidgetComponent/TerrainWidgetComponent"
-    ).then((Widget) => {
-      super.ClickOnLoader();
-
-      if (this.GetInternalWidgetOption?.IsShow) {
-        Widget.default;
-        this.ToolbarWidgetComponent.AddWidgetComponent(Widget.default);
-      } else {
-        if (this.GetInternalWidgetOption !== undefined) {
-          this.ToolbarWidgetComponent.RemoveWidgetComponentById(
-            this.GetInternalWidgetOption.Id
-          );
-        }
-      }
-    });
-  }
+  override ClickOnLoader(): void {}
 }
