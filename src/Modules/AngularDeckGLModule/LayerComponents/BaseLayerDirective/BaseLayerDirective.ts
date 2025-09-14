@@ -2,6 +2,7 @@ import { Directive, Input, OnInit } from "@angular/core";
 import { Layer, LayerExtension, LayerProps } from "@deck.gl/core";
 import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
 import { StatefulComponentProps } from "@deck.gl/core/dist/lifecycle/component";
+import BaseLayerLoader from "../../LayerLoaders/BaseLayerLoader/BaseLayerLoader";
 
 /*Базовая родительская директива для слоев карты */
 @Directive({
@@ -12,7 +13,9 @@ export default abstract class BaseLayerDirective<LayerClass extends Layer>
 {
   constructor(protected DeckGLComponent: DeckGLComponent) {}
   protected Layer!: LayerClass;
-
+  /*Лоадеры для слоя */
+  @Input()
+  Loaders: BaseLayerLoader[] = [];
   /*Отслеживать ли эвенты кликов на карте */
   @Input()
   Pickable: boolean = false;

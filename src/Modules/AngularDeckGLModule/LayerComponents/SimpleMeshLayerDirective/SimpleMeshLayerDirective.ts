@@ -9,8 +9,6 @@ import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes"
 })
 export default class SimpleMeshLayerDirective extends BaseLayerDirective<SimpleMeshLayer> {
   @Input()
-  Loaders: any[] = [];
-  @Input()
   GetPosition = (MapModel: MapModelOptions) => {
     return MapModel.Coordinates;
   };
