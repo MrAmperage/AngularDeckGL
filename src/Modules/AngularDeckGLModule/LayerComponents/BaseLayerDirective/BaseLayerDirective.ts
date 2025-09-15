@@ -33,7 +33,7 @@ export default abstract class BaseLayerDirective<LayerClass extends Layer>
     });
     this.DeckGLComponent.UpdateLayer(this.Layer);
   }
-  UpdateLayerProps(Props: Required<LayerProps>) {
+  UpdateLayerProps(Props: any) {
     this.Layer = this.Layer.clone({ ...this.Layer.props, ...Props });
     this.DeckGLComponent.UpdateLayer(this.Layer);
   }

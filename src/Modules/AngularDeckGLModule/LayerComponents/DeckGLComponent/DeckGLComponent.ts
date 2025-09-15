@@ -66,7 +66,7 @@ export default class DeckGLComponent implements OnInit {
     this.DeckGL.setProps({ layers: NewLayers });
   }
   UpdateLayer(UpdateLayer: Layer) {
-    let Layers = this.DeckGL.props.layers;
+    let Layers = [...this.DeckGL.props.layers];
     const UpdateLayerIndex = Layers.findIndex((LayerObject) => {
       return LayerObject instanceof Layer && LayerObject.id == UpdateLayer.id;
     });
