@@ -1,7 +1,6 @@
 import { Directive, Input, OnInit } from "@angular/core";
 import { Layer, LayerExtension, LayerProps } from "@deck.gl/core";
 import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
-import { StatefulComponentProps } from "@deck.gl/core/dist/lifecycle/component";
 import BaseLayerLoader from "../../LayerLoaders/BaseLayerLoader/BaseLayerLoader";
 
 /*Базовая родительская директива для слоев карты */
@@ -34,7 +33,7 @@ export default abstract class BaseLayerDirective<LayerClass extends Layer>
     });
     this.DeckGLComponent.UpdateLayer(this.Layer);
   }
-  UpdateLayerProps(Props: StatefulComponentProps<Required<LayerProps>>) {
+  UpdateLayerProps(Props: Required<LayerProps>) {
     this.Layer = this.Layer.clone({ ...this.Layer.props, ...Props });
     this.DeckGLComponent.UpdateLayer(this.Layer);
   }

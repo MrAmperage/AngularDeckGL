@@ -13,7 +13,7 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "ng-packagr": "^19.2.2"
+    "ng-packagr": "^20.3.0"
   },
   "publishConfig": {
     "access": "public"

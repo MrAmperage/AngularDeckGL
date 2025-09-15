@@ -1,7 +1,6 @@
 import { Directive, Input } from "@angular/core";
 import { TerrainLayer } from "@deck.gl/geo-layers";
 import { ElevationDecoder } from "./TerrainLayerDirectiveTypes";
-import { RefinementStrategy } from "@deck.gl/geo-layers/dist/tileset-2d";
 import BaseLayerDirective from "../BaseLayerDirective/BaseLayerDirective";
 
 @Directive({
@@ -17,8 +16,6 @@ export default class TerrainLayerDirective extends BaseLayerDirective<TerrainLay
   @Input()
   Bounds!: [number, number, number, number];
   @Input()
-  RefinementStrategy: RefinementStrategy = "no-overlap";
-  @Input()
   Wireframe: boolean = false;
   @Input({ required: true })
   Texture!: string;
@@ -27,7 +24,7 @@ export default class TerrainLayerDirective extends BaseLayerDirective<TerrainLay
 
   PrepareLayer() {
     this.Layer = new TerrainLayer({
-      refinementStrategy: this.RefinementStrategy,
+      refinementStrategy: "no-overlap",
       wireframe: this.Wireframe,
       id: this.Id,
       elevationDecoder: this.ElevationDecoder,
