@@ -9,8 +9,8 @@ import {
   IterableDiffer,
   IterableDiffers,
 } from "@angular/core";
-import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes";
 import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
+import { Coordinates } from "../../Types/LibTypes";
 
 /*Слой для отображения статичных моделей */
 @Directive({
@@ -29,14 +29,10 @@ export default class SimpleMeshLayerDirective
   }
   DataDiffer: IterableDiffer<any[]>;
 
-  @Input()
-  GetPosition = (MapModel: MapModelOptions) => {
-    return MapModel.Coordinates;
-  };
-  @Input()
-  GetColor = (MapModel: MapModelOptions) => {
-    return MapModel.Color;
-  };
+  @Input({ required: true })
+  GetPosition: ((Model: any) => Required<Coordinates>) | undefined = undefined;
+  @Input({ required: true })
+  GetColor: ((Model: any) => [number, number, number]) | undefined = undefined;
   @Input()
   SizeScale: number = 1;
   @Input()

@@ -10,7 +10,7 @@ import {
 import BaseLayerDirective from "../BaseLayerDirective/BaseLayerDirective";
 import { ScenegraphLayer } from "@deck.gl/mesh-layers";
 import DeckGLComponent from "../DeckGLComponent/DeckGLComponent";
-import { MapModelOptions } from "../../AbstractionModels/MapModel/MapModelTypes";
+import { Coordinates } from "../../Types/LibTypes";
 
 /*Слой для отображения моделей с анимацией*/
 @Directive({
@@ -29,14 +29,10 @@ export default class ScenegraphLayerDirective
   }
   @Input()
   Data: any[] = [];
-  @Input()
-  GetPosition = (MapModel: MapModelOptions) => {
-    return MapModel.Coordinates;
-  };
-  @Input()
-  GetColor = (MapModel: MapModelOptions) => {
-    return MapModel.Color;
-  };
+  @Input({ required: true })
+  GetPosition: ((Model: any) => Required<Coordinates>) | undefined = undefined;
+  @Input({ required: true })
+  GetColor: ((Model: any) => [number, number, number]) | undefined = undefined;
   @Input()
   SizeScale: number = 1;
   @Input()
