@@ -5,6 +5,7 @@ export { default as DeckGLComponent } from "./Modules/AngularDeckGLModule/LayerC
 export { default as TileLayerDirective } from "./Modules/AngularDeckGLModule/LayerComponents/TileLayerDirective/TileLayerDirective";
 export { default as TerrainLayerDirective } from "./Modules/AngularDeckGLModule/LayerComponents/TerrainLayerDirective/TerrainLayerDirective";
 export { default as SimpleMeshLayerDirective } from "./Modules/AngularDeckGLModule/LayerComponents/SimpleMeshLayerDirective/SimpleMeshLayerDirective";
+export { default as ScenegraphLayerDirective } from "./Modules/AngularDeckGLModule/LayerComponents/ScenegraphLayerDirective/ScenegraphLayerDirective";
 
 /*Виджеты */
 export { default as BaseWidgetComponent } from "./Modules/AngularDeckGLModule/WidgetComponents/BaseWidgetComponent/BaseWidgetComponent";
