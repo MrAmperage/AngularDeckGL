@@ -8,7 +8,7 @@ export { default as SimpleMeshLayerDirective } from "./Modules/AngularDeckGLModu
 export { default as ScenegraphLayerDirective } from "./Modules/AngularDeckGLModule/LayerComponents/ScenegraphLayerDirective/ScenegraphLayerDirective";
 
 /*Виджеты */
-export { default as BaseWidgetComponent } from "./Modules/AngularDeckGLModule/WidgetComponents/BaseWidgetComponent/BaseWidgetComponent";
+//export { default as BaseWidgetComponent } from "./Modules/AngularDeckGLModule/WidgetComponents/BaseWidgetComponent/BaseWidgetComponent";
 
 /*Сервисы */
 export { default as MapService } from "./Modules/AngularDeckGLModule/Services/MapService/MapService";
